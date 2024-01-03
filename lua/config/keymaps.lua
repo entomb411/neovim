@@ -7,7 +7,9 @@ vim.api.nvim_set_keymap(
   "n",
   "<space>fp",
   ":Telescope file_browser<CR>",
-  { noremap = true }
+  { noremap = true, 
+    desc = "Open file browser",
+  }
 )
 
 -- open file_browser with the path of the current buffer
