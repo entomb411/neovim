@@ -46,4 +46,4 @@ require("lazy").setup({
 })
 
 require("telescope").load_extension("file_browser")
-
+-- require('leap').create_default_mappings()
