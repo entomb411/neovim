@@ -3,13 +3,17 @@
 -- Add any additional keymaps here
 
 -- Open telescope file_browser picker
+vim.api.nvim_set_keymap("n", "<space>fp", ":Telescope file_browser<CR>", {
+  noremap = true,
+  desc = "Open file browser",
+})
+
+-- Open telescope live_grep_args
 vim.api.nvim_set_keymap(
   "n",
-  "<space>fp",
-  ":Telescope file_browser<CR>",
-  { noremap = true, 
-    desc = "Open file browser",
-  }
+  "<leader>fg",
+  ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+  { desc = "Live Grep (Args)" }
 )
 
 -- open file_browser with the path of the current buffer
