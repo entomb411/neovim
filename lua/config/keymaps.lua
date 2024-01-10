@@ -16,6 +16,13 @@ vim.api.nvim_set_keymap(
   { desc = "Live Grep (Args)" }
 )
 
+-- Grep word under cursor
+-- Actually already <leader>sw
+-- local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
+-- vim.keymap.set("n", "<leader>gc", live_grep_args_shortcuts.grep_word_under_cursor)
+
+-- vim.api.nvim_set_keymap("n", "<leader>gc", live_grep_args_shortcuts.grep_word_under_cursor)
+
 -- open file_browser with the path of the current buffer
 -- vim.api.nvim_set_keymap(
 --   "n",

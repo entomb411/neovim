@@ -32,6 +32,7 @@ C-i  - Retrace movements forwards (go forward to where you were before)
 Visual mode: <leader> sW  - Search for current selection (cwd)
 
 Registers
+<leader> s"  - Show registers
 There are ten types of registers:
 1. The unnamed register ""
 2. 10 numbered registers "0 to "9
@@ -60,6 +61,7 @@ m{a-zA-Z}  - Set mark {a-zA-Z} at cursor position
 ''  - Move to position before last jump
 ``  - Move to position before last jump
 '^  - Move to position where last insert started
+<leader> sm  - Jump to mark / show marks
 
 File Navigation
 <leader><space>  - Find files (root dir). This opens Telescope file finder at the directory the currently open file is. Also <leader> ff
@@ -70,6 +72,7 @@ File Navigation
 <leader> e  - Open file explorer sidebar (root dir)
 <space> fp  - Open telescope file browser
 <leader> fg  - Open telescope live grep with args. This allows you to add arguments to the underlying ripgrep command.
+               For example: "_drm" -g 'CMakeLists.txt'
 ?  - Show keybindings (while in the NeoTree window)
 
 Jumps
@@ -97,6 +100,8 @@ Searching
 n  - Repeat search in same direction
 N  - Repeat search in opposite direction
 <space> /  - Grep in root dir
+<leader> sw  - Grep word under cursor (root dir)
+<leader> sW  - Grep word under cursor (cwd)
 Find in files:
   1) <leader> sG  - Open live_grep (telescope)
   2) Start typing
@@ -170,3 +175,4 @@ t{char} or T{char}  - Same as f{char} or F{char}, except the cursor is placed on
 
 
 :Telescope notify  - view notification history
+:Noice telescope  - view Noice message history (probably more useful than the above)
