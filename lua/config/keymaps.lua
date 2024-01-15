@@ -16,6 +16,9 @@ vim.api.nvim_set_keymap(
   { desc = "Live Grep (Args)" }
 )
 
+-- Open undotree
+vim.api.nvim_set_keymap('n', '<leader>su', ':UndotreeToggle', {noremap = true})
+
 -- Grep word under cursor
 -- Actually already <leader>sw
 -- local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")

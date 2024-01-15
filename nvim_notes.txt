@@ -132,6 +132,7 @@ g~ {motion}  - switch case for text covered by motion
 <leader> s" - Show registers
 u  - undo
 C-r  - redo
+<leader> su  - Show undo history
 
 Code
 K  - open hover
