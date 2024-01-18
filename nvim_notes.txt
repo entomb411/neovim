@@ -131,6 +131,9 @@ g~ {motion}  - switch case for text covered by motion
 <leader> s" - Show registers
 u  - undo
 C-r  - redo
+C-v - visual block mode
+C-v [select column] S-i [insert text] ESC - insert text in column
+S-v - visual line mode
 
 Code
 K  - open hover
