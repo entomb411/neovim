@@ -15,3 +15,6 @@ vim.api.nvim_set_keymap(
   ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
   { desc = "Live Grep (Args)" }
 )
+
+vim.keymap.set('n', '<leader>su', require('undotree').toggle, { noremap = true, silent = true, desc = "Toggle Undotree" })
+
