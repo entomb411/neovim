@@ -18,3 +18,6 @@ vim.api.nvim_set_keymap(
 
 vim.keymap.set('n', '<leader>su', require('undotree').toggle, { noremap = true, silent = true, desc = "Toggle Undotree" })
 
+-- Format selection
+vim.keymap.set('v', '<Leader>bf', vim.lsp.buf.format, { desc = "Format selection" })
+
