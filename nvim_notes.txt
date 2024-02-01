@@ -28,8 +28,6 @@ w  - Move forward one word
 b  - Move backward one word
 C-o  - Retrace movements backwards (go back to where you were before)
 C-i  - Retrace movements forwards (go forward to where you were before)
-<leader> sb  - Grep inside current buffer
-Visual mode: <leader> sW  - Search for current selection (cwd)
 
 Registers
 <leader> s"  - Show registers
@@ -93,6 +91,9 @@ H  - Move to top of screen (? maybe doesn't work)
 }  - Move forward one paragraph
 :s  - Open search and replace (searches in current buffer)
 :%s  - Open search and replace (searches in all buffers)
+C-o  - move backwards through jump list
+C-i  - move forwards through jump list
+<tab>  - move forwards through jump list
 
 Searching
 /  - Search forward (my setup is case insensitive, in fact don't use capitals because it screws up the search)
@@ -102,6 +103,8 @@ N  - Repeat search in opposite direction
 <space> /  - Grep in root dir
 <leader> sw  - Grep word under cursor (root dir)
 <leader> sW  - Grep word under cursor (cwd)
+<leader> sb  - Grep inside current buffer
+Visual mode: <leader> sW  - Search for current selection (cwd)
 Find in files:
   1) <leader> sG  - Open live_grep (telescope)
   2) Start typing
@@ -134,6 +137,14 @@ C-r  - redo
 C-v - visual block mode
 C-v [select column] S-i [insert text] ESC - insert text in column
 S-v - visual line mode
+dt{char}  - delete up to {char}
+df{char}  - delete up to and including {char}
+dT{char}  - delete back to {char}
+dF{char}  - delete back to and including {char}
+
+Changes
+g;  - go to older position in change list
+g,  - go to newer position in change list
 
 Code
 K  - open hover
@@ -167,6 +178,13 @@ C-w o  - close other windows
 Git
 <leader> ghb  - git blame line
 <leader> gg  - LazyGit
+<leader> ghp  - Preview hunk inline (Gitsigns)
+<leader> ghb  - Blame line (Gitsigns)
+<leader> ghr  - Reset hunk (Gitsigns)
+]h  - next hunk
+[h  - previous hunk
+<leader> ghd  - Diff this
+<leader> ghD  - Diff this ~
 
 Flash
 S  - Flash Treesitter (normal mode). All parents of the Treesitter node under your cursor are highlighted with a label for quick selection of a specific Treesitter node. Use ; and , to increase/decrease the selection.
@@ -177,6 +195,7 @@ t{char} or T{char}  - Same as f{char} or F{char}, except the cursor is placed on
                For example, yr will start yanking and open flash. Select a label to set the cursor position. Perform a motion, like iw or start flash Treesitter with S.
                The yank will be performed and the cursor will be returned to the original position.
 
-
+Telescope
 :Telescope notify  - view notification history
 :Noice telescope  - view Noice message history (probably more useful than the above)
+:Telescope resume  - resume the last telescope picker
