@@ -98,6 +98,7 @@ C-i  - move forwards through jump list
 Searching
 /  - Search forward (my setup is case insensitive, in fact don't use capitals because it screws up the search)
 ?  - Search backward
+C-r <register>  - Paste from register into search bar
 n  - Repeat search in same direction
 N  - Repeat search in opposite direction
 <space> /  - Grep in root dir
@@ -161,6 +162,8 @@ gco  - Insert comment to the next line and enters INSERT mode
 gcO  - Insert comment to the previous line and enters INSERT mode
 gcA  - Insert comment to end of the current line and enters INSERT mode
 <leader>bf  - format selection (visual mode)
+<leader>fs  - list symbols in the current buffer
+<leader>cg  - format current line
 
 Copilot
 :Copilot panel  - open copilot panel to preview suggestions in a split window
@@ -199,3 +202,8 @@ Telescope
 :Telescope notify  - view notification history
 :Noice telescope  - view Noice message history (probably more useful than the above)
 :Telescope resume  - resume the last telescope picker
+:Telescope lsp_document_symbols  - list symbols in the current buffer
+
+INSERT MODE
+CTRL-R {register}  - Paste from register
+

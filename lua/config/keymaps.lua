@@ -16,8 +16,27 @@ vim.api.nvim_set_keymap(
   { desc = "Live Grep (Args)" }
 )
 
-vim.keymap.set('n', '<leader>su', require('undotree').toggle, { noremap = true, silent = true, desc = "Toggle Undotree" })
+vim.api.nvim_set_keymap(
+"n",
+"<leader>fs",
+":Telescope lsp_document_symbols<CR>",
+{ desc = "Document symbols" }
+)
+
+vim.api.nvim_set_keymap(
+"n",
+"<leader>cg",
+"0v$<Space>cf<CR><C-[>",
+{ desc = "Format line"}
+)
+
+vim.keymap.set(
+  "n",
+  "<leader>su",
+  require("undotree").toggle,
+  { noremap = true, silent = true, desc = "Toggle Undotree" }
+)
 
 -- Format selection
-vim.keymap.set('v', '<Leader>bf', vim.lsp.buf.format, { desc = "Format selection" })
+vim.keymap.set("v", "<Leader>bf", vim.lsp.buf.format, { desc = "Format selection" })
 
