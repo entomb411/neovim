@@ -171,6 +171,10 @@ gcA  - Insert comment to end of the current line and enters INSERT mode
 
 Copilot
 :Copilot panel  - open copilot panel to preview suggestions in a split window
+:CopilotChat "message"  - send a message to the copilot chat about code in unnamed register ('y' command)
+:CopilotChatExplain  - explains code in unnamed register ('y' command)
+:CopilotChatFixDiagnostic  - fix diagnostic in current line
+:CopilotChatInPlace "prompt"  - Run in-place chat session about code selected using visual mode.
 
 Buffers
 ]b  - next buffer
@@ -181,6 +185,12 @@ Buffers
 Windows
 C-w w  - switch to other window
 C-w o  - close other windows
+C-w q  - close window
+
+Folding
+za  - toggle fold
+zR  - open all folds
+zM  - close all folds
 
 Git
 <leader> ghb  - git blame line
