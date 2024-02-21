@@ -131,6 +131,7 @@ gUgn  - Uppercase next search match
 Editing
 A  - append at end of line
 I  - insert at beginning of line
+J  - join lines
 g~ {motion}  - switch case for text covered by motion
 <leader> s" - Show registers
 u  - undo
@@ -142,6 +143,8 @@ dt{char}  - delete up to {char}
 df{char}  - delete up to and including {char}
 dT{char}  - delete back to {char}
 dF{char}  - delete back to and including {char}
+C-a  - increment number under cursor
+C-x  - decrement number under cursor
 
 Changes
 g;  - go to older position in change list
@@ -164,6 +167,7 @@ gcA  - Insert comment to end of the current line and enters INSERT mode
 <leader>bf  - format selection (visual mode)
 <leader>fs  - list symbols in the current buffer
 <leader>cg  - format current line
+<leader>xX  - Workspace diagnostics (Trouble)
 
 Copilot
 :Copilot panel  - open copilot panel to preview suggestions in a split window
@@ -188,6 +192,7 @@ Git
 [h  - previous hunk
 <leader> ghd  - Diff this
 <leader> ghD  - Diff this ~
+:Git add %  - Stage current file
 
 Flash
 S  - Flash Treesitter (normal mode). All parents of the Treesitter node under your cursor are highlighted with a label for quick selection of a specific Treesitter node. Use ; and , to increase/decrease the selection.

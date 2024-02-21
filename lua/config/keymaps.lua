@@ -40,3 +40,12 @@ vim.keymap.set(
 -- Format selection
 vim.keymap.set("v", "<Leader>bf", vim.lsp.buf.format, { desc = "Format selection" })
 
+---- Popup menu options ----
+-- Configuring nvim-cmp
+local cmp = require("cmp")
+cmp.setup {
+  mapping = {
+    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+  },
+}
+
