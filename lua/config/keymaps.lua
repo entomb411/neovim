@@ -16,6 +16,8 @@ vim.api.nvim_set_keymap(
   { desc = "Live Grep (Args)" }
 )
 
+vim.keymap.set("n", "<leader>sj", "<cmd>lua require('telescope.builtin').jumplist()<cr>", { desc = "Jump list" })
+
 vim.api.nvim_set_keymap(
 "n",
 "<leader>fs",

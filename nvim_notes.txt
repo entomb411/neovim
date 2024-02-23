@@ -94,6 +94,7 @@ H  - Move to top of screen (? maybe doesn't work)
 C-o  - move backwards through jump list
 C-i  - move forwards through jump list
 <tab>  - move forwards through jump list
+<leader> sj  - Show jump list (Telescope)
 
 Searching
 /  - Search forward (my setup is case insensitive, in fact don't use capitals because it screws up the search)
