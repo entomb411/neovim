@@ -22,8 +22,8 @@ F <char>  - Move to previous occurrence of <char> (subsequent presses of 'f' mov
 #  - Move to previous occurrence of word under cursor, or the highlighted text in visual mode
 )  - Move forward one sentence
 (  - Move backward one sentence
-}  - Move forward one paragraph
-{  - Move backward one paragraph
+}  - Move forward one paragraph (i.e. move to the next blank line)
+{  - Move backward one paragraph (i.e. move to the previous blank line)
 w  - Move forward one word
 b  - Move backward one word
 C-o  - Retrace movements backwards (go back to where you were before)
@@ -115,7 +115,7 @@ Find in files:
   5) Select directory
   6) Get returned to live_grep, scoped to the directory you selected and with your search args still populated
 Find and Replace One Occurrence at a Time:
-  1) Execute a regular search with /.
+  1) Execute a regular search with /
   2) Use the keystroke cgn on the first result to replace it.
   3) Type n or N to go to the next result.
   4) Use . to replace the occurrence with the same replacement, or go to the next result if you want to keep it.
