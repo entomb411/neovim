@@ -176,6 +176,13 @@ Copilot
 :CopilotChatExplain  - explains code in unnamed register ('y' command)
 :CopilotChatFixDiagnostic  - fix diagnostic in current line
 :CopilotChatInPlace "prompt"  - Run in-place chat session about code selected using visual mode.
+<leader>ccb  - CopilotChatBuffer - Chat with current buffer
+<leader>ccx  - CopilotChatInPlace (requires visual mode selection)
+<leader>ccv  - CopilotChatVisual - Open in vertical split (requires visual mode selection)
+<leader>ccf  - CopilotChatFixDiagnostic - Fix diagnostic in current line
+<leader>ccr  - CopilotChatReset - Reset the chat session
+<leader>cce  - CopilotChatExplain
+<leader>ccT  - CopilotChatVsplitToggle - Toggle Vsplit
 
 Buffers
 ]b  - next buffer
@@ -204,6 +211,13 @@ Git
 <leader> ghd  - Diff this
 <leader> ghD  - Diff this ~
 :Git add %  - Stage current file
+
+Macro
+q{register}  - Start recording macro
+q  - Stop recording macro
+@{register}  - Play macro
+@@  - Play last played macro
+n@{register}  - Play macro n times
 
 Flash
 S  - Flash Treesitter (normal mode). All parents of the Treesitter node under your cursor are highlighted with a label for quick selection of a specific Treesitter node. Use ; and , to increase/decrease the selection.
