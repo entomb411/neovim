@@ -89,8 +89,6 @@ H  - Move to top of screen (? maybe doesn't work)
 )  - Move forward one sentence
 {  - Move backward one paragraph
 }  - Move forward one paragraph
-:s  - Open search and replace (searches in current buffer)
-:%s  - Open search and replace (searches in all buffers)
 C-o  - move backwards through jump list
 C-i  - move forwards through jump list
 <tab>  - move forwards through jump list
@@ -119,6 +117,9 @@ Find and Replace One Occurrence at a Time:
   2) Use the keystroke cgn on the first result to replace it.
   3) Type n or N to go to the next result.
   4) Use . to replace the occurrence with the same replacement, or go to the next result if you want to keep it.
+
+:s  - Open search and replace (searches in current buffer)
+:%s  - Open search and replace (searches in all buffers)
 Search and replace with confirmation
   :%s/foo/bar/gc
 
@@ -194,6 +195,11 @@ Windows
 C-w w  - switch to other window
 C-w o  - close other windows
 C-w q  - close window
+C-w s  - split window horizontally
+C-w v  - split window vertically
+C-w h/j/k/l  - move to window in direction (also can use arrow keys)
+C-w r  - rotate windows (clockwise)
+C-w H/J/K/L  - move window to direction (e.g. C-w H will move the current window to the left and make it vertical)
 
 Folding
 za  - toggle fold
@@ -233,6 +239,11 @@ Telescope
 :Noice telescope  - view Noice message history (probably more useful than the above)
 :Telescope resume  - resume the last telescope picker
 :Telescope lsp_document_symbols  - list symbols in the current buffer
+
+Trouble
+<leader>xt  - Show 'todo' list across all files in the workspace
+<leader>xx  - Show 'diagnostics' list for the document
+<leader>xX  - Show 'diagnostics' list for the workspace
 
 INSERT MODE
 CTRL-R {register}  - Paste from register
