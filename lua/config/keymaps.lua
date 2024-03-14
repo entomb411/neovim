@@ -51,3 +51,5 @@ cmp.setup {
   },
 }
 
+vim.keymap.set("n", "cc", '"_diw"0P', { noremap = true, desc = "Replace word with last yanked text"})
+-- vim.keymap.set("v", "cc", '"_d"0P', {noremap = true, desc = "Replace selection with last yanked text"})

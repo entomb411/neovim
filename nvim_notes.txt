@@ -100,6 +100,8 @@ Searching
 C-r <register>  - Paste from register into search bar
 n  - Repeat search in same direction
 N  - Repeat search in opposite direction
+*  - Move to next occurrence of word under cursor, or the highlighted text in visual mode
+#  - Move to previous occurrence of word under cursor, or the highlighted text in visual mode
 <space> /  - Grep in root dir
 <leader> sw  - Grep word under cursor (root dir)
 <leader> sW  - Grep word under cursor (cwd)
@@ -147,6 +149,7 @@ dT{char}  - delete back to {char}
 dF{char}  - delete back to and including {char}
 C-a  - increment number under cursor
 C-x  - decrement number under cursor
+cc  - replace word with last yanked text
 
 Changes
 g;  - go to older position in change list
@@ -248,3 +251,12 @@ Trouble
 INSERT MODE
 CTRL-R {register}  - Paste from register
 
+
+KEYMAPPINGS
+https://stackoverflow.com/a/73842679/23608203
+get a list of all active mappings with :help maplist(),
+get details about a specific mapping with :help maparg(),
+check if a mapping exists with :help mapcheck(),
+check if a mapping to a specific command exists with :help has_mapto().
+But I'm afraid there are some misconceptions, here: things like zz are not "shortcuts" or "mappings". They are commands and, as such, will never come up with the functions above.
+If you want a list of all normal mode commands, see :help normal-index.
