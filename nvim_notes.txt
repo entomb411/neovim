@@ -260,3 +260,10 @@ check if a mapping exists with :help mapcheck(),
 check if a mapping to a specific command exists with :help has_mapto().
 But I'm afraid there are some misconceptions, here: things like zz are not "shortcuts" or "mappings". They are commands and, as such, will never come up with the functions above.
 If you want a list of all normal mode commands, see :help normal-index.
+
+
+NAMESPACES
+Get a list of all modules in the 'vim' namespace
+:lua print(vim.inspect(vim))
+Inspect the global namespace. This is the table of global variables in Lua, not Neovim per se.
+:lua print(vim.inspect(_G))
