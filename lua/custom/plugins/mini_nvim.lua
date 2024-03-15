@@ -32,6 +32,18 @@ return {
       return '%2l:%-2v'
     end
 
+    -- Navigate and manipulate file system
+    -- Run with ':lua MiniFiles.open()'
+    -- Press j/k to navigate down/up.
+    -- Press l to expand entry under cursor: show directory or open file in the most recent window.
+    -- Press h to go to parent directory.
+    -- Type g? for more information about other available mappings.
+    -- Move as in any other buffer ($, G, f/t, etc.).
+    local minifiles = require 'mini.files'
+    minifiles.setup()
+    minifiles.config.windows.preview = true -- Show preview of files and directories
+    vim.keymap.set('n', '<leader>wf', _G.MiniFiles.open, { desc = 'Browse [W]orkspace [F]iles' })
+    -- vim.keymap.set('n', '<leader>wf', '<cmd>lua require("mini.files").open()', { desc = 'Open MiniFiles to browse [W]orkspace [F]iles' })
     -- ... and there is more!
     --  Check out: https://github.com/echasnovski/mini.nvim
   end,
