@@ -93,6 +93,9 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
 
+-- Don't autoformat
+vim.g.autoformat = false
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -150,6 +153,12 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- Set indentation settings
+vim.o.expandtab = true -- expand tab input with spaces characters
+vim.o.smartindent = true -- syntax aware indentations for newline inserts
+vim.o.tabstop = 4 -- num of space characters per tab
+vim.o.shiftwidth = 4 -- spaces per indentation level
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`

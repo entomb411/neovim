@@ -42,6 +42,8 @@ return {
     local minifiles = require 'mini.files'
     minifiles.setup()
     minifiles.config.windows.preview = true -- Show preview of files and directories
+    minifiles.config.windows.width_preview = 80 -- Width of preview window
+    minifiles.config.windows.width_nofocus = 30 -- Width of windows not in focus
     vim.keymap.set('n', '<leader>wf', _G.MiniFiles.open, { desc = 'Browse [W]orkspace [F]iles' })
     -- vim.keymap.set('n', '<leader>wf', '<cmd>lua require("mini.files").open()', { desc = 'Open MiniFiles to browse [W]orkspace [F]iles' })
     -- ... and there is more!
