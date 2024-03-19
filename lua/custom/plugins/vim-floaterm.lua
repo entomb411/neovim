@@ -6,4 +6,8 @@
 
 return {
   'voldikss/vim-floaterm',
+
+  keys = {
+    { '<leader>cgg', ':FloatermNew --height=0.9 --width=0.9 --disposable lazygit<cr>', desc = '[c]ode [g]it - Open Lazy[G]it' },
+  },
 }

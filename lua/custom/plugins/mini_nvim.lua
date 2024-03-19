@@ -40,6 +40,26 @@ return {
     -- Yank selection replacing latest put region   [Y [y ]y ]Y    MiniBracketed.yank()
     require('mini.bracketed').setup()
 
+    -- Minimal and fast tabline showing listed buffers.
+    require('mini.tabline').setup()
+
+    -- Read, write, and delete sessions.
+    require('mini.sessions').setup()
+
+    -- Fast and flexible start screen
+    local starter = require 'mini.starter'
+    starter.setup {
+      dependencies = {
+        'telescope_nvim.lua',
+        'nvim-telescope/telescope-file-browser.nvim',
+      },
+      items = {
+        starter.sections.telescope(),
+        starter.sections.sessions(5, true),
+        starter.sections.builtin_actions(),
+      },
+    }
+
     -- Simple and easy statusline.
     --  You could remove this setup call if you don't like it,
     --  and try some other statusline plugin
