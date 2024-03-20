@@ -1,11 +1,21 @@
 return {
   'folke/trouble.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 'nvim-tree/nvim-web-devicons', 'folke/which-key.nvim' },
   opts = {
     -- your configuration comes here
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
   },
+  config = function(_, opts)
+    require('trouble').setup(opts)
+
+    require('which-key').register {
+      ['<leader>x'] = {
+        name = 'Trouble',
+        x = 'which_key_ignore',
+      },
+    }
+  end,
   event = 'VeryLazy',
   keys = {
     -- Lua

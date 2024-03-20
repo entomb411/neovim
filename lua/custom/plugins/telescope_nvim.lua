@@ -78,6 +78,12 @@ return {
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>cgc', builtin.git_commits, { desc = 'Search [G]it [C]ommits' })
+      vim.keymap.set('n', '<leader>cgs', builtin.git_status, { desc = 'Search [G]it [S]tatus' })
+      vim.keymap.set('n', '<leader>cgb', builtin.git_branches, { desc = 'Search [G]it [B]ranches' })
+      vim.keymap.set('n', '<leader>cgf', builtin.git_bcommits, { desc = 'Search [G]it Bu[f]fer Commits' })
+      -- vim.keymap.set('v', '<leader>cgo', builtin.git_bcommits_range, { desc = 'Search [G]it C[o]mmits for selected lines' })
+      vim.keymap.set('n', '<leader>st', builtin.treesitter, { desc = '[S]earch [T]ree-sitter' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
