@@ -24,5 +24,18 @@ return {
     opts = {
       signs = custom_signs,
     },
+    config = function(_, opts) -- The first parameter is a LazyPlugin, which we don't know or care what it is.
+      -- Default implementation of config() automatically runs require(MAIN).setup(opts).
+      -- This means that if you want to extend config(), you should call this same function, and add whatever logic you want afterwards.
+      require('gitsigns').setup(opts)
+
+      local which_key = require 'which-key'
+      -- which_key.register {
+      --   ['m'] = {
+      --     name = '+marks',
+      --     [','] = 'Set next available lowercase mark',
+      --   },
+      -- }
+    end,
   },
 }
