@@ -22,6 +22,9 @@ return {
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+
+      -- Search using rg, allowing arguments to be passed in. For example, '"telescope" -tlua' will search for "telescope" in lua files.
+      { 'nvim-telescope/telescope-live-grep-args.nvim' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -45,7 +48,14 @@ return {
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
-      require('telescope').setup {
+      local telescope = require 'telescope'
+      local lga_actions = require 'telescope-live-grep-args.actions'
+      -- From here: https://www.reddit.com/r/neovim/comments/xj784v/telescope_live_grep_inside_certain_folders/
+      -- https://github.com/JoosepAlviste/dotfiles/blob/master/config/nvim/lua/j/plugins/telescope.lua#L75
+      -- https://github.com/JoosepAlviste/dotfiles/blob/master/config/nvim/lua/j/telescope_custom_pickers.lua
+      -- local custom_pickers = require 'j.telescope_custom_pickers'
+
+      telescope.setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
@@ -54,10 +64,22 @@ return {
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          -- live_grep = { mappings = { i = { ['<c-f>'] = custom_pickers.actions.set_extension, ['<c-l>'] = custom_pickers.actions.set_folders } } },
+        },
+
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
+          },
+          ['live_grep_args'] = {
+            auto_quoting = true,
+            mappings = {
+              i = {
+                ['<C-k>'] = lga_actions.quote_prompt(),
+                ['<C-i>'] = lga_actions.quote_prompt { postfix = ' --iglob ' },
+              },
+            },
           },
         },
       }
@@ -65,6 +87,7 @@ return {
       -- Enable telescope extensions, if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'live_grep_args')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -76,11 +99,14 @@ return {
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-      vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch [B]uffers' })
+      vim.keymap.set('n', '<leader>sb', function()
+        require('telescope.builtin').buffers { sort_lastused = true }
+      end, { desc = '[S]earch [B]uffers' })
       vim.keymap.set('n', '<leader>sa', '<cmd>Telescope find_files no_ignore=true<cr>', { desc = '[S]earch [A]ll Buffers' })
       vim.keymap.set('n', '<leader>si', function()
         require('telescope.builtin').live_grep { additional_args = { '--no-ignore' } }
       end, { desc = '[S]earch Grep No-[I]gnore' })
+      vim.keymap.set('n', '<leader>sc', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = 'Live Grep (Args)' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set('n', '<leader>cgc', builtin.git_commits, { desc = 'Search [G]it [C]ommits' })
