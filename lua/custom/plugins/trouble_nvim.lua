@@ -19,62 +19,35 @@ return {
   end,
   event = 'VeryLazy',
   keys = {
-    -- Lua
     {
-      '<leader>xx',
-      function()
-        require('trouble').toggle()
-      end,
-      desc = 'Toggle Trouble',
+      "<leader>xx",
+      "<cmd>Trouble diagnostics toggle<cr>",
+      desc = "Diagnostics (Trouble)",
     },
     {
-      '<leader>xw',
-      function()
-        require('trouble').toggle 'workspace_diagnostics'
-      end,
-      desc = 'Toggle workspace diagnostics (Trouble)',
+      "<leader>xX",
+      "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+      desc = "Buffer Diagnostics (Trouble)",
     },
     {
-      '<leader>xd',
-      function()
-        require('trouble').toggle 'document_diagnostics'
-      end,
-      desc = 'Toggle document diagnostics (Trouble)',
+      "<leader>cs",
+      "<cmd>Trouble symbols toggle focus=false<cr>",
+      desc = "Symbols (Trouble)",
     },
     {
-      '<leader>xq',
-      function()
-        require('trouble').toggle 'quickfix'
-      end,
-      desc = 'Toggle quickfix (Trouble)',
+      "<leader>cl",
+      "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+      desc = "LSP Definitions / references / ... (Trouble)",
     },
     {
-      '<leader>xl',
-      function()
-        require('trouble').toggle 'loclist'
-      end,
-      desc = 'Toggle location list (Trouble)',
+      "<leader>xL",
+      "<cmd>Trouble loclist toggle<cr>",
+      desc = "Location List (Trouble)",
     },
     {
-      '<leader>xgr',
-      function()
-        require('trouble').toggle 'lsp_references'
-      end,
-      desc = 'Show LSP references (Trouble)',
-    },
-    {
-      '<leader>xgd',
-      function()
-        require('trouble').toggle 'lsp_definitions'
-      end,
-      desc = 'Show LSP definitions (Trouble)',
-    },
-    {
-      '<leader>xgt',
-      function()
-        require('trouble').toggle 'lst_type_definitions'
-      end,
-      desc = 'Show LSP type definitions (Trouble)',
+      "<leader>xQ",
+      "<cmd>Trouble qflist toggle<cr>",
+      desc = "Quickfix List (Trouble)",
     },
   },
 }
