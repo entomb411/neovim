@@ -27,7 +27,16 @@ return {
       }
     end,
     keys = {
-      { '<leader>ccb', ':CopilotChatBuffer ', desc = 'CopilotChat - Chat with current buffer' },
+      {
+        '<leader>ccb',
+        function()
+          local input = vim.fn.input 'Quick Chat: '
+          if input ~= '' then
+            require('CopilotChat').ask(input, { selection = require('CopilotChat.select').buffer })
+          end
+        end,
+        desc = 'CopilotChat - Chat with current buffer',
+      },
       { '<leader>cce', '<cmd>CopilotChatExplain<cr>', desc = 'CopilotChat - Explain code' },
       { '<leader>cct', '<cmd>CopilotChatTests<cr>', desc = 'CopilotChat - Generate tests' },
       {

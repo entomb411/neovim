@@ -29,41 +29,24 @@ return {
       -- Define a function to get the range of the current line
       local function get_line_range()
         local line = vim.api.nvim_win_get_cursor(0)[1]
-        local start_pos = { line - 1, 0 }
-        local end_pos = { line - 1, vim.fn.col '$' - 1 }
+        local start_pos = { line, 0 }
+        local end_pos = { line, vim.fn.col '$' - 1 }
         return { ['start'] = start_pos, ['end'] = end_pos }
       end
 
       -- Define a function to format the current line
       local function format_current_line()
         local params = {
-          -- options = vim.lsp.util.make_formatting_params_options(),
           range = get_line_range(),
         }
-        vim.lsp.buf_request(0, 'textDocument/rangeFormatting', params)
+        vim.lsp.buf.format(params)
       end
 
-      -- Broken T_T
       wk.register {
         ['<leader>cf'] = { name = '[F]ormat', _ = 'which_key_ignore' },
         ['<leader>cfl'] = { format_current_line, '[L]ine' },
       }
 
-      -- Supposed to format the current line, but it's so broken for some reason.
-      -- wk.register {
-      --   ['<leader>cf'] = { name = '[F]ormat', _ = 'which_key_ignore' },
-      --   -- Format line
-      --   ['<leader>cfl'] = {
-      --     vim.lsp.buf.format {
-      --       range = {
-      --         ['start'] = { vim.api.nvim_win_get_cursor(0)[1], 0 },
-      --         ['end'] = { vim.api.nvim_win_get_cursor(0)[1], vim.fn.col '$' - 1 },
-      --       },
-      --     },
-      --     '[L]ine',
-      --   },
-      -- }
-      --
       wk.register({
         ['<Leader>cfs'] = { vim.lsp.buf.format, '[S]election' },
       }, { mode = 'v' })

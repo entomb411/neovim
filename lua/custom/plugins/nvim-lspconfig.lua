@@ -137,7 +137,7 @@ return {
     local servers = {
       -- gopls = {},
       pyright = {},
-      -- clangd = {},
+      clangd = {},
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
@@ -176,6 +176,17 @@ return {
         },
       },
     }
+
+    vim.api.nvim_create_autocmd('LspAttach', {
+      callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client.name == 'clangd' then
+          -- Add keymap for ClangdSwitchSourceHeader
+          local bufn = args.bufnr or 0
+          vim.api.nvim_buf_set_keymap(bufn, 'n', '<space>cr', '<cmd>ClangdSwitchSourceHeader<cr>', { noremap = true, silent = true })
+        end
+      end,
+    })
 
     -- Ensure the servers and tools above are installed
     --  To check the current status of installed tools and/or manually install
