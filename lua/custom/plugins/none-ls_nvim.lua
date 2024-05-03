@@ -9,7 +9,6 @@ return {
       'nvim-lua/plenary.nvim',
     },
     config = function()
-      vim.print 'none-ls.nvim loaded'
       local null_ls = require 'null-ls'
       null_ls.setup {
         sources = {

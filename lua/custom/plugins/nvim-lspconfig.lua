@@ -137,7 +137,11 @@ return {
     local servers = {
       -- gopls = {},
       pyright = {},
-      clangd = {},
+      clangd = {
+        capabilities = {
+          offsetEncoding = { 'utf-16' },
+        },
+      },
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
