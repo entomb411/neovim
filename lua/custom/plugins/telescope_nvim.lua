@@ -25,6 +25,8 @@ return {
 
       -- Search using rg, allowing arguments to be passed in. For example, '"telescope" -tlua' will search for "telescope" in lua files.
       { 'nvim-telescope/telescope-live-grep-args.nvim' },
+
+      { 'folke/which-key.nvim' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -94,7 +96,7 @@ return {
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
+      vim.keymap.set('n', '<leader>sx', builtin.builtin, { desc = '[S]earch Built-In Pickers' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
@@ -115,6 +117,10 @@ return {
       vim.keymap.set('n', '<leader>cgf', builtin.git_bcommits, { desc = 'Search [G]it Bu[f]fer Commits' })
       -- vim.keymap.set('v', '<leader>cgo', builtin.git_bcommits_range, { desc = 'Search [G]it C[o]mmits for selected lines' })
       vim.keymap.set('n', '<leader>st', builtin.treesitter, { desc = '[S]earch [T]ree-sitter' })
+      vim.keymap.set('n', '<leader>s"', builtin.registers, { desc = '[S]earch Registers' })
+      vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = '[S]earch [M]arks' })
+      vim.keymap.set('n', '<leader>su', builtin.autocommands, { desc = '[S]earch A[u]tocommands' })
+      vim.keymap.set('n', '<leader>sj', builtin.jumplist, { desc = '[S]earch [J]umplist' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -138,6 +144,21 @@ return {
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+    -- Add Telescope keymaps for LSP pickers
+    require('which-key').register {
+      ['<leader>sl'] = {
+        name = '[L]SP',
+        x = 'which_key_ignore',
+      },
+    }
+    vim.keymap.set('n', '<leader>sls', builtin.lsp_document_symbols, { desc = '[S]ymbols in Document' })
+    vim.keymap.set('n', '<leader>slr', builtin.lsp_references, { desc = '[R]eferences for Word' })
+    vim.keymap.set('n', '<leader>slw', builtin.lsp_workspace_symbols, { desc = '[W]orkspace Symbols' })
+    vim.keymap.set('n', '<leader>sli', builtin.lsp_implementations, { desc = '[I]mplementations' })
+    vim.keymap.set('n', '<leader>slt', builtin.lsp_type_definitions, { desc = '[T]ype Definitions for Word' })
+    vim.keymap.set('n', '<leader>sld', builtin.lsp_definitions, { desc = '[D]efinitions' })
+
     end,
   },
   {
