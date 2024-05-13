@@ -91,7 +91,15 @@ return {
     minifiles.config.windows.width_preview = 80 -- Width of preview window
     minifiles.config.windows.width_nofocus = 30 -- Width of windows not in focus
     vim.keymap.set('n', '<leader>wf', _G.MiniFiles.open, { desc = 'Browse [W]orkspace [F]iles' })
-    -- vim.keymap.set('n', '<leader>wf', '<cmd>lua require("mini.files").open()', { desc = 'Open MiniFiles to browse [W]orkspace [F]iles' })
+    vim.keymap.set('n', '<leader>wc', function()
+      local curr_buf = vim.api.nvim_buf_get_name(0)
+      -- If curr_buf is not a valid file then open from the workspace root.
+      if vim.fn.filereadable(curr_buf) == 0 then
+        minifiles.open(nil, false)
+      else
+        minifiles.open(curr_buf, false)
+      end
+    end, { desc = 'Browse [W]orkspace [C]urrent File' })
     -- ... and there is more!
     --  Check out: https://github.com/echasnovski/mini.nvim
   end,
