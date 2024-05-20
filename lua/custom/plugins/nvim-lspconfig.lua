@@ -98,6 +98,10 @@ return {
         require('clangd_extensions.inlay_hints').setup_autocmd()
         require('clangd_extensions.inlay_hints').set_inlay_hints()
 
+        map('<leader>ct', function()
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {})
+        end, '[T]oggle Inlay Hints')
+
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
         --    See `:help CursorHold` for information about when this is executed

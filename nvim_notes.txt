@@ -164,6 +164,7 @@ gcA  - Insert comment to end of the current line and enters INSERT mode
 <leader>sls  - Search symbols in the current buffer. <c-l> opens autocomplete menu to filter results by type of symbol you want to see. <c-n> and <c-p> scroll through the menu, and <c-y> accepts it.
 <leader>cfl  - Format current line
 <leader>cfd  - Format current document
+<leader>ct  - Toggle inlay hints
 
 Trouble
 <leader>xx  - Diagnostics (Trouble)
