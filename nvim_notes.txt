@@ -151,6 +151,10 @@ K  - open hover
 C-x C-o  - omnifunc (insert mode)
 ]h  - next hunk (diff)
 [h  - prev hunk
+]m  - next method start
+]M  - next method end
+[m  - prev method start
+[M  - prev method end
 gD  - goto declaration
 gd  - goto definition
 gr  - goto references
@@ -208,6 +212,26 @@ Git
 [h  - Previous hunk
 <leader>cgg  - LazyGit
 
+Textobjects
+a  - around
+i  - inside
+Examples
+vi)  - visually select inside parentheses
+da]  - delete around square brackets
+yib  - yank inside balanced ), ], or }
+ciq  - change inside quotes ", ', or `
+yi?  - yank inside user defined text object (asks for left and right edges)
+dit  - delete inside tag (HTML/XML)
+yaf  - yank around function call (i.e. includes function name and parentheses)
+yif  - yank inside function call (i.e. only includes arguments)
+daa  - delete around argument
+dia  - delete in argument
+g[   - move cursor to left edge of 'a' textobject
+g]   - move cursor to right edge of 'a' textobject
+an   - around next textobject
+in   - inside next textobject
+al   - around last textobject
+il   - inside last textobject
 
 Flash
 S  - Flash Treesitter (normal mode). All parents of the Treesitter node under your cursor are highlighted with a label for quick selection of a specific Treesitter node. Use ; and , to increase/decrease the selection.
@@ -233,3 +257,8 @@ CTRL-R {register}  - Paste from register
 
 Show all keys in global namespace
 :lua for key,value in pairs(_G) do print(key) end
+
+Kitty scrollback (https://github.com/mikesmithgh/kitty-scrollback.nvim)
+In Kitty,
+<C-S-h>  - Open scrollback in nvim
+<Space>y  - Yank and close scrollback (when text is highlighted in visual mode).
