@@ -52,10 +52,7 @@ return {
       -- See `:help telescope` and `:help telescope.setup()`
       local telescope = require 'telescope'
       local lga_actions = require 'telescope-live-grep-args.actions'
-      -- From here: https://www.reddit.com/r/neovim/comments/xj784v/telescope_live_grep_inside_certain_folders/
-      -- https://github.com/JoosepAlviste/dotfiles/blob/master/config/nvim/lua/j/plugins/telescope.lua#L75
-      -- https://github.com/JoosepAlviste/dotfiles/blob/master/config/nvim/lua/j/telescope_custom_pickers.lua
-      -- local custom_pickers = require 'j.telescope_custom_pickers'
+      local custom_pickers = require 'custom.util.telescope_custom_pickers'
 
       telescope.setup {
         -- You can put your default mappings / updates / etc. in here
@@ -67,7 +64,14 @@ return {
         --   },
         -- },
         pickers = {
-          -- live_grep = { mappings = { i = { ['<c-f>'] = custom_pickers.actions.set_extension, ['<c-l>'] = custom_pickers.actions.set_folders } } },
+          live_grep = {
+            mappings = {
+              i = {
+                ['<c-f>'] = custom_pickers.actions.set_extension,
+                ['<c-l>'] = custom_pickers.actions.set_folders,
+              },
+            },
+          },
         },
 
         extensions = {

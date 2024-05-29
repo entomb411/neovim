@@ -219,6 +219,15 @@ if not vim.loop.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+-- Debugging information to show where modules can be loaded from.
+-- print("Lua module paths:")
+-- print(package.path)
+-- print("\nC module paths:")
+-- print(package.cpath)
+-- local runtimepaths = vim.api.nvim_get_option('runtimepath')
+-- print("Neovim runtime paths:")
+-- print(runtimepaths)
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run

@@ -117,6 +117,10 @@ Find and Replace One Occurrence at a Time:
 Search and replace with confirmation
   :%s/foo/bar/gc
 
+During live grep:
+<C-f>  - Set the file extension to grep in.
+<C-l>  - Set the directory to grep in.
+
 gn  - Select next search match (i.e. find next match and select it in visual mode)
 gN  - Select previous search match
 cgn  - Change next search match
@@ -190,6 +194,7 @@ Buffers
 [b  - previous buffer
 <leader><space>  - switch buffer
 :e  - reload file
+:bd  - close current buffer (buffer delete)
 
 Windows
 C-w w  - switch to other window
@@ -257,6 +262,8 @@ CTRL-R {register}  - Paste from register
 
 Show all keys in global namespace
 :lua for key,value in pairs(_G) do print(key) end
+
+:messages  - Show history of command line messages.
 
 Kitty scrollback (https://github.com/mikesmithgh/kitty-scrollback.nvim)
 In Kitty,
