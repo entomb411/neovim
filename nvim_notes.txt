@@ -239,6 +239,7 @@ al   - around last textobject
 il   - inside last textobject
 
 Flash
+s  - Flash jump.
 S  - Flash Treesitter (normal mode). All parents of the Treesitter node under your cursor are highlighted with a label for quick selection of a specific Treesitter node. Use ; and , to increase/decrease the selection.
 f{char} or F{char}  - Jump forward or backward to the [count]'th occurrence of {char} in the current line. The cursor is placed on {char} inclusive. Repeat motion with f, or undo motion with F. Can also use ; and ,
 t{char} or T{char}  - Same as f{char} or F{char}, except the cursor is placed on {char} exclusive.
