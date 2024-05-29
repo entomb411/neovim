@@ -252,7 +252,33 @@ Telescope
 :Noice telescope  - view Noice message history (probably more useful than the above)
 :Telescope resume  - resume the last telescope picker
 :Telescope lsp_document_symbols  - list symbols in the current buffer
-<space> sx  - Search builtin pickers
+ <space>s"   - Search Registers
+ <space>sc   - Live Grep (Args)
+ <space>si   - Search Grep No-Ignore
+ <space>sr   - Search Resume
+ <space>s.   - Search Recent Files ("." for repeat)
+ <space>sd   - Search Diagnostics
+ <space>sj   - Search Jumplist
+ <space>st   - Search Tree-sitter
+ <space>s/   - Search / in Open Files
+ <space>sf   - Search Files
+ <space>sk   - Search Keymaps
+ <space>su   - Search Autocommands
+ <space>sa   - Search All Buffers
+ <space>sg   - Search by Grep
+ <space>sm   - Search Marks
+ <space>sw   - Search current Word
+ <space>sb   - Search Buffers
+ <space>sh   - Search Help
+ <space>sn   - Search Neovim files
+ <space>sx   - Search Built-In Pickers
+ <space>sld  - Definitions
+ <space>sli  - Implementations
+ <space>slr  - References for Word
+ <space>sls  - Symbols in Document
+ <space>slt  - Type Definitions for Word
+ <space>slw  - Workspace Symbols
+
 
 INSERT MODE
 CTRL-R {register}  - Paste from register
