@@ -176,6 +176,7 @@ gcA  - Insert comment to end of the current line and enters INSERT mode
 <leader>cfb  - Format current buffer
 <leader>cfd  - Format current diff
 <leader>ct  - Toggle inlay hints
+<leader>cd  - Toggle documentation view window.
 
 Trouble
 <leader>xx  - Diagnostics (Trouble)
