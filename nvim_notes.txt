@@ -25,6 +25,8 @@ F <char>  - Move to previous occurrence of <char> (subsequent presses of 'f' mov
 {  - Move backward one paragraph (i.e. move to the previous blank line)
 w  - Move forward one word
 b  - Move backward one word
+e  - Move to end of word
+ge  - Move to end of previous word
 C-o  - Retrace movements backwards (go back to where you were before)
 C-i  - Retrace movements forwards (go forward to where you were before)
 
@@ -171,7 +173,8 @@ gcA  - Insert comment to end of the current line and enters INSERT mode
 <leader>cfs  - Format selection (visual mode)
 <leader>sls  - Search symbols in the current buffer. <c-l> opens autocomplete menu to filter results by type of symbol you want to see. <c-n> and <c-p> scroll through the menu, and <c-y> accepts it.
 <leader>cfl  - Format current line
-<leader>cfd  - Format current document
+<leader>cfb  - Format current buffer
+<leader>cfd  - Format current diff
 <leader>ct  - Toggle inlay hints
 
 Trouble
@@ -197,9 +200,15 @@ Buffers
 :bd  - close current buffer (buffer delete)
 
 Windows
+C-w s  - split window
+C-w v  - split window vertically
 C-w w  - switch to other window
 C-w o  - close other windows
 C-w q  - close window
+C-h    - Move focus to the left window
+C-l    - Move focus to the right window
+C-j    - Move focus to the lower window
+C-k    - Move focus to the upper window
 
 Folding
 za  - toggle fold
@@ -216,6 +225,8 @@ Git
 ]h  - Next hunk
 [h  - Previous hunk
 <leader>cgg  - LazyGit
+:Gdiffsplit  - Open git diff in a split window
+:diffget  - Get changes from the other window (while Gdiffsplit is open)
 
 Textobjects
 a  - around
@@ -292,7 +303,15 @@ Show all keys in global namespace
 
 :messages  - Show history of command line messages.
 
+Persistence
+<leader>pr  - Restore last session
+
 Kitty scrollback (https://github.com/mikesmithgh/kitty-scrollback.nvim)
 In Kitty,
 <C-S-h>  - Open scrollback in nvim
 <Space>y  - Yank and close scrollback (when text is highlighted in visual mode).
+
+
+ If you wish to know more about what's made available by the vim variable, :help lua-stdlib and :help lua-vim are the way to go.
+ Alternatively, you can do :lua print(vim.inspect(vim)) to get a list of every module.
+ API functions are documented under :help api-global.

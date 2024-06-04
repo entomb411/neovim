@@ -26,10 +26,10 @@ return {
   },
   keys = {
     {
-      '<leader>cfd',
+      '<leader>cfb',
       '<cmd>lua require("conform").format()<CR>',
       mode = 'n',
-      desc = '[D]ocument',
+      desc = '[B]uffer',
     },
   },
 }

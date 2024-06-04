@@ -44,7 +44,7 @@ return {
     require('mini.tabline').setup()
 
     -- Read, write, and delete sessions.
-    require('mini.sessions').setup()
+    -- require('mini.sessions').setup()
 
     -- Visualize scope with animated vertical bar.
     require('mini.indentscope').setup()

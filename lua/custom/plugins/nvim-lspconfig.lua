@@ -95,8 +95,8 @@ return {
         --  For example, in C this would take you to the header
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-        require('clangd_extensions.inlay_hints').setup_autocmd()
-        require('clangd_extensions.inlay_hints').set_inlay_hints()
+        -- require('clangd_extensions.inlay_hints').setup_autocmd()
+        -- require('clangd_extensions.inlay_hints').set_inlay_hints()
 
         map('<leader>ct', function()
           vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {})
@@ -192,6 +192,9 @@ return {
           -- Add keymap for ClangdSwitchSourceHeader
           local bufn = args.bufnr or 0
           vim.api.nvim_buf_set_keymap(bufn, 'n', '<space>cr', '<cmd>ClangdSwitchSourceHeader<cr>', { noremap = true, silent = true })
+          -- Invoke clang-format-diff-7 on the current buffer.
+          local curr_buf_path = vim.api.nvim_buf_get_name(bufn)
+          vim.api.nvim_buf_set_keymap(bufn, 'n', '<space>cfd', string.format('<cmd>! git diff %s | clang-format-diff-7 -i -p1<cr>', curr_buf_path), { noremap = true, silent = true, desc='[D]iff' })
         end
       end,
     })

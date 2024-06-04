@@ -1,6 +1,5 @@
 return {
   'folke/trouble.nvim',
-  branch = "dev",
   dependencies = { 'nvim-tree/nvim-web-devicons', 'folke/which-key.nvim' },
   opts = {
     -- your configuration comes here

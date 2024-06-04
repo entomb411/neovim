@@ -196,6 +196,10 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Keep the cursor in the middle of the screen when going page up or down.
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move half page up and keep cursor in the middle' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move half page down and keep cursor in the middle' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
