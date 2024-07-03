@@ -108,7 +108,7 @@ return {
       vim.keymap.set('n', '<leader>sb', function()
         require('telescope.builtin').buffers { sort_lastused = true }
       end, { desc = '[S]earch [B]uffers' })
-      vim.keymap.set('n', '<leader>sa', '<cmd>Telescope find_files no_ignore=true<cr>', { desc = '[S]earch [A]ll Buffers' })
+      vim.keymap.set('n', '<leader>sa', '<cmd>Telescope find_files no_ignore=true<cr>', { desc = '[S]earch [A]ll Files' })
       vim.keymap.set('n', '<leader>si', function()
         require('telescope.builtin').live_grep { additional_args = { '--no-ignore' } }
       end, { desc = '[S]earch Grep No-[I]gnore' })
