@@ -94,6 +94,7 @@ return {
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'live_grep_args')
+      pcall(require('telescope').load_extension, 'noice')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -149,20 +150,19 @@ return {
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
 
-    -- Add Telescope keymaps for LSP pickers
-    require('which-key').register {
-      ['<leader>sl'] = {
-        name = '[L]SP',
-        x = 'which_key_ignore',
-      },
-    }
-    vim.keymap.set('n', '<leader>sls', builtin.lsp_document_symbols, { desc = '[S]ymbols in Document' })
-    vim.keymap.set('n', '<leader>slr', builtin.lsp_references, { desc = '[R]eferences for Word' })
-    vim.keymap.set('n', '<leader>slw', builtin.lsp_workspace_symbols, { desc = '[W]orkspace Symbols' })
-    vim.keymap.set('n', '<leader>sli', builtin.lsp_implementations, { desc = '[I]mplementations' })
-    vim.keymap.set('n', '<leader>slt', builtin.lsp_type_definitions, { desc = '[T]ype Definitions for Word' })
-    vim.keymap.set('n', '<leader>sld', builtin.lsp_definitions, { desc = '[D]efinitions' })
-
+      -- Add Telescope keymaps for LSP pickers
+      require('which-key').register {
+        ['<leader>sl'] = {
+          name = '[L]SP',
+          x = 'which_key_ignore',
+        },
+      }
+      vim.keymap.set('n', '<leader>sls', builtin.lsp_document_symbols, { desc = '[S]ymbols in Document' })
+      vim.keymap.set('n', '<leader>slr', builtin.lsp_references, { desc = '[R]eferences for Word' })
+      vim.keymap.set('n', '<leader>slw', builtin.lsp_workspace_symbols, { desc = '[W]orkspace Symbols' })
+      vim.keymap.set('n', '<leader>sli', builtin.lsp_implementations, { desc = '[I]mplementations' })
+      vim.keymap.set('n', '<leader>slt', builtin.lsp_type_definitions, { desc = '[T]ype Definitions for Word' })
+      vim.keymap.set('n', '<leader>sld', builtin.lsp_definitions, { desc = '[D]efinitions' })
     end,
   },
   {

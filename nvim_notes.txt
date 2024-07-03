@@ -316,7 +316,11 @@ CTRL-R {register}  - Paste from register
 Show all keys in global namespace
 :lua for key,value in pairs(_G) do print(key) end
 
+Noice
 :messages  - Show history of command line messages.
+:Noice  - Shows a full message history
+:Telescope noice  - Show message history in Telescope
+:Noice dismiss  - Dismiss all visible messages
 
 Persistence
 <leader>pr  - Restore last session
