@@ -50,6 +50,16 @@ return {
       wk.register({
         ['<Leader>cfs'] = { vim.lsp.buf.format, '[S]election' },
       }, { mode = 'v' })
+
+      wk.register {
+        -- Kill (exit) the current buffer
+        ['<leader>bk'] = {
+          function()
+            vim.api.nvim_buf_delete(0, { force = true })
+          end,
+          '[K]ill',
+        },
+      }
     end,
   },
 }

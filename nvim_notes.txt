@@ -12,6 +12,8 @@ C-f  -  Scroll forward one screen
 C-b  -  Scroll backward one screen
 C-d  -  Scroll forward half a screen
 C-u  -  Scroll backward half a screen
+C-e  - Scroll down one line
+C-y  - Scroll up one line
 M  - Move to middle of screen
 f <char>  - Move to next occurrence of <char> (subsequent presses of 'f' move to next occurrence) (Flash)
 F <char>  - Move to previous occurrence of <char> (subsequent presses of 'f' move to previous occurrence) (Flash)
@@ -207,6 +209,8 @@ Buffers
 <leader><space>  - switch buffer
 :e  - reload file
 :bd  - close current buffer (buffer delete)
+<leader>bk  - kill (close) current buffer
+:Scratch  - open a scratch buffer
 
 Macros
 q<register><commands>q  - record macro
@@ -224,6 +228,11 @@ C-h    - Move focus to the left window
 C-l    - Move focus to the right window
 C-j    - Move focus to the lower window
 C-k    - Move focus to the upper window
+C-w =  - Balance window sizes
+C-w <  - Decrease window width
+C-w >  - Increase window width
+C-w -  - Decrease window height
+C-w +  - Increase window height
 
 Folding
 za  - toggle fold
@@ -339,3 +348,6 @@ To debug lsp issues, enable debug logging using the following commands, either i
   vim.lsp.set_log_level("debug")
   vim.print(vim.inspect(vim.lsp.get_log_path()))
 The rpc.send lines are what nvim sends to the lsp server, and the rpc.receive lines are what we receive from the lsp server.
+
+This can be used to find hotkey collisions.
+  :checkhealth which-key

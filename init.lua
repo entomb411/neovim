@@ -214,6 +214,47 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Function to create a scratch buffer
+function Scratch()
+  -- Check if the scratch buffer already exists
+  if _G.scratch_bufnr and vim.api.nvim_buf_is_valid(_G.scratch_bufnr) then
+    -- The scratch buffer exists, so switch to it
+    -- If the window is visible, focus on it, otherwise open a new window split to show it.
+    local wins = vim.api.nvim_list_wins()
+    local found = false
+    for _, win in ipairs(wins) do
+      if vim.api.nvim_win_get_buf(win) == _G.scratch_bufnr then
+        vim.api.nvim_set_current_win(win)
+        -- Show buffer inside window
+        vim.cmd('buffer ' .. _G.scratch_bufnr)
+        found = true
+        break
+      end
+    end
+    if not found then
+      vim.cmd 'vnew'
+      vim.api.nvim_win_set_buf(0, _G.scratch_bufnr)
+    end
+  else
+    -- The scratch buffer doesn't exist, so create it
+    vim.cmd 'vnew'
+    vim.cmd('vertical resize ' .. math.floor(vim.o.columns * 0.33))
+    local buf = vim.api.nvim_get_current_buf()
+    vim.api.nvim_set_option_value('buftype', 'nofile', { buf = buf })
+    vim.api.nvim_set_option_value('bufhidden', 'wipe', { buf = buf })
+    vim.api.nvim_set_option_value('swapfile', false, { buf = buf })
+    vim.api.nvim_set_option_value('wrap', false, { win = 0 })
+
+    -- Store the buffer number in the global variable
+    _G.scratch_bufnr = buf
+  end
+end
+
+-- Create a new scratch buffer with `:Scratch`
+vim.cmd([[
+  command! Scratch lua Scratch()
+]])
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
