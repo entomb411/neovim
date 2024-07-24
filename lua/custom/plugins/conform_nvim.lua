@@ -27,7 +27,7 @@ return {
   keys = {
     {
       '<leader>cfb',
-      '<cmd>lua require("conform").format()<CR>',
+      '<cmd>lua require("conform").format({lsp_format="fallback"})<CR>',
       mode = 'n',
       desc = '[B]uffer',
     },
