@@ -6,6 +6,8 @@ Help
 <leader> sk  - Search keybindings
 :map  - Show currently mapped keys
 :LspInfo  - Show LSP info
+:q  - Close help (with help window focused)
+With the cursor on a tag, use <C-]> to jump to the subject. Jump back with <C-0> or <C-t>.
 
 Navigation
 C-f  -  Scroll forward one screen
@@ -105,6 +107,7 @@ C-i  - move forwards through jump list
 Searching
 /  - Search forward
 ?  - Search backward
+<space>/    - Fuzzy search in current buffer
 C-r <register>  - Paste from register into search bar
 n  - Repeat search in same direction
 N  - Repeat search in opposite direction
@@ -154,6 +157,7 @@ dT{char}  - delete back to {char}
 dF{char}  - delete back to and including {char}
 C-a  - increment number under cursor
 C-x  - decrement number under cursor
+To increment a column of numbers, use C-v to select the column, then 'g C-a' to increment the numbers.
 
 Changes
 g;  - go to older position in change list
@@ -251,6 +255,10 @@ Git
 <leader>cgg  - LazyGit
 :Gdiffsplit  - Open git diff in a split window
 :diffget  - Get changes from the other window (while Gdiffsplit is open)
+In diff mode:
+do  - obtain the changes from the other window
+dp  - put the changes to the other window
+:bd  - exit diff mode
 
 Textobjects
 a  - around
@@ -314,6 +322,7 @@ Telescope
  <space>sls  - Symbols in Document
  <space>slt  - Type Definitions for Word
  <space>slw  - Workspace Symbols
+ <space>/    - Fuzzy search in current buffer
 
 
 INSERT MODE

@@ -1,1 +1,2 @@
 - Add/fix python formatting.
+- JSON minify/prettify.

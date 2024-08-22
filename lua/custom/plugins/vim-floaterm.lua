@@ -9,7 +9,7 @@ return {
   -- event = 'BufEnter',
   keys = {
     { '<leader>cgg', ':FloatermNew --height=0.9 --width=0.9 --disposable lazygit<cr>', desc = 'Open Lazy[G]it' },
-    { '<leader>tn', ':FloatermNew --height=0.9 --width=0.9 fish<cr>', desc = '[T]erminal [N]ew' },
+    -- { '<leader>tn', ':FloatermNew --height=0.9 --width=0.9 fish<cr>', desc = '[T]erminal [N]ew' },
   },
   init = function()
     vim.g.floaterm_keymap_kill = '<F11>'
