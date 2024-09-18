@@ -10,14 +10,9 @@ return {
     end,
   },
   {
-    -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
     'folke/tokyonight.nvim',
-    -- priority = 1000, -- make sure to load this before all the other start plugins
     lazy = true,
+    event = "User LazyColorscheme",
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
@@ -27,5 +22,40 @@ return {
       -- You can configure highlights by doing something like
       vim.cmd.hi 'Comment gui=none'
     end,
+  },
+  {
+    "EdenEast/nightfox.nvim",
+    lazy = true,
+    event = "User LazyColorscheme",
+  },
+  {
+    "joshdick/onedark.vim",
+    lazy = true,
+    event = "User LazyColorscheme",
+  },
+  {
+    "Mofiqul/dracula.nvim",
+    lazy = true,
+    event = "User LazyColorscheme",
+  },
+  {
+    "catppuccin/nvim",
+    lazy = true,
+    event = "User LazyColorscheme",
+  },
+  {
+    "bluz71/vim-moonfly-colors",
+    lazy = true,
+    event = "User LazyColorscheme",
+  },
+  {
+    "bluz71/vim-nightfly-colors",
+    lazy = true,
+    event = "User LazyColorscheme",
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = true,
+    event = "User LazyColorscheme",
   },
 }

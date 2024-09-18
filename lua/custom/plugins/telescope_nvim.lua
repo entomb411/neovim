@@ -113,7 +113,7 @@ return {
       vim.keymap.set('n', '<leader>si', function()
         require('telescope.builtin').live_grep { additional_args = { '--no-ignore' } }
       end, { desc = '[S]earch Grep No-[I]gnore' })
-      vim.keymap.set('n', '<leader>sc', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = 'Live Grep (Args)' })
+      vim.keymap.set('n', '<leader>sp', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = 'Live Gre[p] (Args)' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set('n', '<leader>cgc', builtin.git_commits, { desc = 'Search [G]it [C]ommits' })
@@ -126,6 +126,14 @@ return {
       vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = '[S]earch [M]arks' })
       vim.keymap.set('n', '<leader>su', builtin.autocommands, { desc = '[S]earch A[u]tocommands' })
       vim.keymap.set('n', '<leader>sj', builtin.jumplist, { desc = '[S]earch [J]umplist' })
+
+      -- Search colorschemes. Based on https://github.com/folke/lazy.nvim/discussions/1167#discussioncomment-8726381
+      local function open_colorschemes()
+        -- Send event to load the colorschemes.
+        vim.cmd("doautocmd User LazyColorscheme")
+        builtin.colorscheme({ enable_preview = true, ignore_builtins=true})
+      end
+      vim.keymap.set('n', '<leader>sc', open_colorschemes, { desc = '[S]earch [C]olorschemes' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()

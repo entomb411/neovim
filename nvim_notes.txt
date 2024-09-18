@@ -77,7 +77,7 @@ File Navigation
 <leader> si  - Grep (no-ignore, i.e. search all files)
 <leader> we  - Toggle NeoTree workspace explorer (close with <c-w>q if focused)
 <leader> wf  - Browse workspace files using Mini.files
-<leader> sc  - Open telescope live grep with args. This allows you to add arguments to the underlying ripgrep command.
+<leader> sp  - Open telescope live grep with args. This allows you to add arguments to the underlying ripgrep command.
                For example: "_drm" -g 'CMakeLists.txt'
 ?  - Show keybindings (while in the NeoTree window)
 
@@ -297,7 +297,7 @@ Telescope
 :Telescope resume  - resume the last telescope picker
 :Telescope lsp_document_symbols  - list symbols in the current buffer
  <space>s"   - Search Registers
- <space>sc   - Live Grep (Args)
+ <space>sp   - Live Grep (Args)
  <space>si   - Search Grep No-Ignore
  <space>sr   - Search Resume
  <space>s.   - Search Recent Files ("." for repeat)
@@ -306,6 +306,7 @@ Telescope
  <space>st   - Search Tree-sitter
  <space>s/   - Search / in Open Files
  <space>sf   - Search Files
+ <space>sc   - Search Colorschemes
  <space>sk   - Search Keymaps
  <space>su   - Search Autocommands
  <space>sa   - Search All Buffers
@@ -360,3 +361,9 @@ The rpc.send lines are what nvim sends to the lsp server, and the rpc.receive li
 
 This can be used to find hotkey collisions.
   :checkhealth which-key
+
+
+:set ve=all  - Show invisible characters
+:set ve=  - Hide invisible characters
+<C-v>  - Visual block
+<S-r>  - Replace insert mode
