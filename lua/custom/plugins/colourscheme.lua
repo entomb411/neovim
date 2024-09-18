@@ -44,6 +44,11 @@ return {
     event = "User LazyColorscheme",
   },
   {
+    "luisiacc/the-matrix.nvim",
+    lazy = true,
+    event = "User LazyColorscheme",
+  },
+  {
     "bluz71/vim-moonfly-colors",
     lazy = true,
     event = "User LazyColorscheme",
