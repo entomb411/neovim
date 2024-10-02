@@ -367,3 +367,12 @@ This can be used to find hotkey collisions.
 :set ve=  - Hide invisible characters
 <C-v>  - Visual block
 <S-r>  - Replace insert mode
+
+Multiple repeats
+:[range]g[lobal]/{pattern}/[cmd]  - Execute an Ex command on lines that match a pattern
+:[range]v[global]/{pattern}/[cmd]  - Execute an Ex command on lines that do not match a pattern
+:g//d  - Delete all lines that match the last searched pattern.
+:v//d  - Delete all lines that do not match the last searched pattern.
+:g/pattern/p  - Print all lines that match a pattern.
+:g/pattern/s/old/new  - Substitute old with new on lines that match a pattern.
+:g/pattern/normal command  - Execute a normal command on lines that match a pattern.
