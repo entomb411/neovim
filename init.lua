@@ -118,6 +118,9 @@ vim.opt.showmode = false
 --  See `:help 'clipboard'`
 vim.opt.clipboard = 'unnamedplus'
 
+-- Disable swapfile
+vim.opt.swapfile = false
+
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -195,6 +198,12 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Keybinds to resize windows
+-- Use <C-w>t to set the current window width to 1/3 of the screen.
+vim.keymap.set('n', '<C-w>t', function()
+      vim.api.nvim_win_set_width(0, math.floor(vim.o.columns * 0.33))
+  end, { desc = 'Set the current window width to 1/3 of the screen' })
 
 -- Keep the cursor in the middle of the screen when going page up or down.
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move half page up and keep cursor in the middle' })

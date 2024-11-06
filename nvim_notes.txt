@@ -215,6 +215,7 @@ Buffers
 :bd  - close current buffer (buffer delete)
 <leader>bk  - kill (close) current buffer
 :Scratch  - open a scratch buffer
+:enew  - Edit new (unnamed) buffer
 
 Macros
 q<register><commands>q  - record macro
@@ -237,6 +238,7 @@ C-w <  - Decrease window width
 C-w >  - Increase window width
 C-w -  - Decrease window height
 C-w +  - Increase window height
+C-w t  - Set window width to 1/3 of the screen
 
 Folding
 za  - toggle fold
