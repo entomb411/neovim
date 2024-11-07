@@ -128,6 +128,8 @@ Find and Replace One Occurrence at a Time:
   4) Use . to replace the occurrence with the same replacement, or go to the next result if you want to keep it.
 Search and replace with confirmation
   :%s/foo/bar/gc
+Delete all lines containing a pattern
+  :g/pattern/d
 
 During live grep:
 <C-f>  - Set the file extension to grep in.
