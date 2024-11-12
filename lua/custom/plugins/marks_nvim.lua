@@ -31,36 +31,25 @@ return {
     require('marks').setup(opts)
 
     local which_key = require 'which-key'
-    which_key.register {
-      ['m'] = {
-        name = '+marks',
-        [','] = 'Set next available lowercase mark',
-        [';'] = 'Toggle the next available mark at the current line',
-        [']'] = 'Move to next mark',
-        ['['] = 'Move to previous mark',
-        [':'] = 'Preview mark',
-        ['}'] = 'Move to next bookmark',
-        ['{'] = 'Move to previous bookmark',
-      },
-      d = {
-        m = {
-          name = '+delete marks',
-          ['<space>'] = 'Delete all marks in the current buffer',
-          ['-'] = 'Delete all marks on the current line',
-          ['='] = 'Delete the bookmark under the cursor',
-        },
-      },
+    which_key.add {
+      { 'dm', group = '[D]elete' },
+      { 'dm-', desc = 'Delete all marks on the current line' },
+      { 'dm<space>', desc = 'Delete all marks in the current buffer' },
+      { 'dm=', desc = 'Delete the bookmark under the cursor' },
+      { 'm', group = '[M]arks' },
+      { 'm,', desc = 'Set next available lowercase mark' },
+      { 'm:', desc = 'Preview mark' },
+      { 'm;', desc = 'Toggle the next available mark at the current line' },
+      { 'm[', desc = 'Move to previous mark' },
+      { 'm]', desc = 'Move to next mark' },
+      { 'm{', desc = 'Move to previous bookmark' },
+      { 'm}', desc = 'Move to next bookmark' },
     }
+
     for i = 0, 9 do
-      which_key.register {
-        m = {
-          [tostring(i)] = 'Add a bookmark from group ' .. tostring(i),
-        },
-        d = {
-          m = {
-            [tostring(i)] = 'Delete all bookmarks from group ' .. tostring(i),
-          },
-        },
+      which_key.add {
+        { 'm' .. tostring(i), desc = 'Add a bookmark to group ' .. tostring(i) },
+        { 'dm' .. tostring(i), desc = 'Delete all bookmarks from group ' .. tostring(i) },
       }
     end
   end,

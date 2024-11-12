@@ -16,14 +16,14 @@ return {
 
       -- Document existing key chains
       local wk = require 'which-key'
-      wk.register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>cg'] = { name = '[G]it', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        ['<leader>b'] = { name = '[B]uffer', _ = 'which_key_ignore' },
+      wk.add {
+        { '<leader>c', group = '[C]ode' },
+        { '<leader>cg', group = '[G]it' },
+        { '<leader>d', group = '[D]ocument' },
+        { '<leader>r', group = '[R]ename' },
+        { '<leader>s', group = '[S]earch' },
+        { '<leader>w', group = '[W]orkspace' },
+        { '<leader>b', group = '[B]uffer' },
       }
 
       -- Define a function to get the range of the current line
@@ -42,22 +42,20 @@ return {
         vim.lsp.buf.format(params)
       end
 
-      wk.register {
-        ['<leader>cf'] = { name = '[F]ormat', _ = 'which_key_ignore' },
-        ['<leader>cfl'] = { format_current_line, '[L]ine' },
+      wk.add {
+        { '<leader>cf', group = '[F]ormat' },
+        { '<leader>cfl', format_current_line, desc = '[L]ine' },
+        { '<Leader>cfs', vim.lsp.buf.format, desc = '[S]election', mode = 'v' },
       }
 
-      wk.register({
-        ['<Leader>cfs'] = { vim.lsp.buf.format, '[S]election' },
-      }, { mode = 'v' })
-
-      wk.register {
+      wk.add {
         -- Kill (exit) the current buffer
-        ['<leader>bk'] = {
+        {
+          '<leader>bk',
           function()
             vim.api.nvim_buf_delete(0, { force = true })
           end,
-          '[K]ill',
+          desc = '[K]ill',
         },
       }
     end,

@@ -130,8 +130,8 @@ return {
       -- Search colorschemes. Based on https://github.com/folke/lazy.nvim/discussions/1167#discussioncomment-8726381
       local function open_colorschemes()
         -- Send event to load the colorschemes.
-        vim.cmd("doautocmd User LazyColorscheme")
-        builtin.colorscheme({ enable_preview = true, ignore_builtins=true})
+        vim.cmd 'doautocmd User LazyColorscheme'
+        builtin.colorscheme { enable_preview = true, ignore_builtins = true }
       end
       vim.keymap.set('n', '<leader>sc', open_colorschemes, { desc = '[S]earch [C]olorschemes' })
 
@@ -159,18 +159,16 @@ return {
       end, { desc = '[S]earch [N]eovim files' })
 
       -- Add Telescope keymaps for LSP pickers
-      require('which-key').register {
-        ['<leader>sl'] = {
-          name = '[L]SP',
-          x = 'which_key_ignore',
-        },
+      local wk = require 'which-key'
+      wk.add {
+        { '<leader>sl', group = '[L]SP' },
+        { '<leader>sls', builtin.lsp_document_symbols, desc = '[S]ymbols in Document' },
+        { '<leader>slr', builtin.lsp_references, desc = '[R]eferences for Word' },
+        { '<leader>slw', builtin.lsp_workspace_symbols, desc = '[W]orkspace Symbols' },
+        { '<leader>sli', builtin.lsp_implementations, desc = '[I]mplementations' },
+        { '<leader>slt', builtin.lsp_type_definitions, desc = '[T]ype Definitions for Word' },
+        { '<leader>sld', builtin.lsp_definitions, desc = '[D]efinitions' },
       }
-      vim.keymap.set('n', '<leader>sls', builtin.lsp_document_symbols, { desc = '[S]ymbols in Document' })
-      vim.keymap.set('n', '<leader>slr', builtin.lsp_references, { desc = '[R]eferences for Word' })
-      vim.keymap.set('n', '<leader>slw', builtin.lsp_workspace_symbols, { desc = '[W]orkspace Symbols' })
-      vim.keymap.set('n', '<leader>sli', builtin.lsp_implementations, { desc = '[I]mplementations' })
-      vim.keymap.set('n', '<leader>slt', builtin.lsp_type_definitions, { desc = '[T]ype Definitions for Word' })
-      vim.keymap.set('n', '<leader>sld', builtin.lsp_definitions, { desc = '[D]efinitions' })
     end,
   },
   {

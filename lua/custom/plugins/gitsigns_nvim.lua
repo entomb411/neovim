@@ -30,25 +30,17 @@ return {
       require('gitsigns').setup(opts)
 
       local which_key = require 'which-key'
-      which_key.register {
-        ['<leader>cgs'] = {
-          name = 'Git[s]igns',
-          b = { "<cmd>lua require('gitsigns').blame_line()<cr>", 'Blame current line' },
-          t = { "<cmd>lua require('gitsigns').toggle_current_line_blame()<cr>", 'Toggle blame current line' },
-          d = { "<cmd>lua require('gitsigns').diffthis()<cr>", 'Diff this' },
-          h = {
-            name = '+hunk',
-            s = { "<cmd>lua require('gitsigns').stage_hunk()<cr>", 'Stage hunk' },
-            r = { "<cmd>lua require('gitsigns').reset_hunk()<cr>", 'Reset hunk' },
-            u = { "<cmd>lua require('gitsigns').undo_stage_hunk()<cr>", 'Undo stage hunk' },
-          },
-        },
-        [']h'] = { "<cmd>lua require('gitsigns').next_hunk()<cr>", 'Next hunk' },
-        ['[h'] = { "<cmd>lua require('gitsigns').prev_hunk()<cr>", 'Previous hunk' },
-        --   ['m'] = {
-        --     name = '+marks',
-        --     [','] = 'Set next available lowercase mark',
-        --   },
+      which_key.add {
+        { '<leader>cgs', group = 'Git[s]igns' },
+        { '<leader>cgsb', "<cmd>lua require('gitsigns').blame_line()<cr>", desc = 'Blame current line' },
+        { '<leader>cgst', "<cmd>lua require('gitsigns').toggle_current_line_blame()<cr>", desc = 'Toggle blame current line' },
+        { '<leader>cgsd', "<cmd>lua require('gitsigns').diffthis()<cr>", desc = 'Diff this' },
+        { '<leader>cgsh', group = '[H]unk' },
+        { '<leader>cgshs', "<cmd>lua require('gitsigns').stage_hunk()<cr>", desc = 'Stage hunk' },
+        { '<leader>cgshr', "<cmd>lua require('gitsigns').reset_hunk()<cr>", desc = 'Reset hunk' },
+        { '<leader>cgshu', "<cmd>lua require('gitsigns').undo_stage_hunk()<cr>", desc = 'Undo stage hunk' },
+        { '<leader>cgs]', "<cmd>lua require('gitsigns').next_hunk()<cr>", desc = 'Next hunk' },
+        { '<leader>cgs[', "<cmd>lua require('gitsigns').prev_hunk()<cr>", desc = 'Previous hunk' },
       }
     end,
   },

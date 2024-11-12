@@ -20,10 +20,8 @@ return {
       require('CopilotChat').setup(opts)
 
       local which_key = require 'which-key'
-      which_key.register {
-        ['<leader>cc'] = {
-          name = 'CopilotChat',
-        },
+      which_key.add {
+        { '<leader>cc', group = 'CopilotChat' },
       }
     end,
     keys = {
