@@ -39,8 +39,8 @@ return {
         { '<leader>cgshs', "<cmd>lua require('gitsigns').stage_hunk()<cr>", desc = 'Stage hunk' },
         { '<leader>cgshr', "<cmd>lua require('gitsigns').reset_hunk()<cr>", desc = 'Reset hunk' },
         { '<leader>cgshu', "<cmd>lua require('gitsigns').undo_stage_hunk()<cr>", desc = 'Undo stage hunk' },
-        { '<leader>cgs]', "<cmd>lua require('gitsigns').next_hunk()<cr>", desc = 'Next hunk' },
-        { '<leader>cgs[', "<cmd>lua require('gitsigns').prev_hunk()<cr>", desc = 'Previous hunk' },
+        { ']h', "<cmd>lua require('gitsigns').next_hunk()<cr>", desc = 'Next hunk' },
+        { '[h', "<cmd>lua require('gitsigns').prev_hunk()<cr>", desc = 'Previous hunk' },
       }
     end,
   },
