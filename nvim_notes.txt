@@ -254,6 +254,10 @@ Git
 <leader>cgshs  - Stage hunk
 <leader>cgshr  - Reset hunk
 <leader>cgshu  - Undo stage hunk
+<leader>cgt  - Search git status
+<leader>cgb  - Search git branches
+<leader>cgc  - Search git commits
+<leader>cgf  - Search git buffer commits
 ]h  - Next hunk
 [h  - Previous hunk
 <leader>cgg  - LazyGit
