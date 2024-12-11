@@ -15,6 +15,7 @@ return {
     build = function()
       vim.notify "Please update the remote plugins by running ':UpdateRemotePlugins', then restart Neovim."
     end,
+    branch = 'main',
     event = 'VeryLazy',
     config = function(_, opts)
       require('CopilotChat').setup(opts)
