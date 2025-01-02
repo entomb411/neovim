@@ -62,7 +62,7 @@ return {
       auto_show = true,
       auto_show_delay_ms = 500,
     },
-    menu = {
+    DISABLED_menu = {
       draw = {
         columns = { { 'item_idx' }, { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
         components = {
