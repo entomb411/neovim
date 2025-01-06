@@ -49,6 +49,9 @@ return {
     -- Visualize scope with animated vertical bar.
     require('mini.indentscope').setup()
 
+    -- Use mini picker (alternative to Telescope)
+    require('mini.pick').setup()
+
     -- Fast and flexible start screen
     local starter = require 'mini.starter'
     starter.setup {
