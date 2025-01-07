@@ -99,7 +99,28 @@ return {
     vim.keymap.set('n', '<leader>szt', mini_extra.pickers.treesitter, { desc = '[S]earch [T]ree-sitter' })
     vim.keymap.set('n', '<leader>sz"', mini_extra.pickers.registers, { desc = '[S]earch Registers' })
     vim.keymap.set('n', '<leader>szm', mini_extra.pickers.marks, { desc = '[S]earch [M]arks' })
-    -- vim.keymap.set('n', '<leader>szl', mini_extra.pickers.lsp, { desc = '[S]earch [L]sp' })
+    vim.keymap.set('n', '<leader>szle', function()
+      mini_extra.pickers.lsp { scope = 'declaration' }
+    end, { desc = 'Declaration' })
+    vim.keymap.set('n', '<leader>szld', function()
+      mini_extra.pickers.lsp { scope = 'definition' }
+    end, { desc = 'Definition' })
+    vim.keymap.set('n', '<leader>szls', function()
+      mini_extra.pickers.lsp { scope = 'document_symbol' }
+    end, { desc = 'Symbols' })
+    vim.keymap.set('n', '<leader>szli', function()
+      mini_extra.pickers.lsp { scope = 'implementation' }
+    end, { desc = 'Implementation' })
+    vim.keymap.set('n', '<leader>szlr', function()
+      mini_extra.pickers.lsp { scope = 'references' }
+    end, { desc = 'References' })
+    vim.keymap.set('n', '<leader>szlt', function()
+      mini_extra.pickers.lsp { scope = 'type_definition' }
+    end, { desc = 'Type Definition' })
+    vim.keymap.set('n', '<leader>szlw', function()
+      mini_extra.pickers.lsp { scope = 'workspace_symbol' }
+    end, { desc = 'Workspace Symbols' })
+
     vim.keymap.set('n', '<leader>szc', mini_extra.pickers.commands, { desc = '[S]earch [C]ommands' })
 
     -- Fast and flexible start screen
