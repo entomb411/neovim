@@ -49,8 +49,58 @@ return {
     -- Visualize scope with animated vertical bar.
     require('mini.indentscope').setup()
 
+    -- Move any selection in any direction.
+    -- require('mini.move').setup()
+
     -- Use mini picker (alternative to Telescope)
-    require('mini.pick').setup()
+    local mini_pick = require 'mini.pick'
+    mini_pick.setup()
+    local mini_extra = require 'mini.extra'
+    mini_extra.setup()
+    vim.keymap.set('n', '<leader>szh', mini_pick.builtin.help, { desc = '[S]earch [H]elp' })
+    vim.keymap.set('n', '<leader>szk', mini_extra.pickers.keymaps, { desc = '[S]earch [K]eymaps' })
+    vim.keymap.set('n', '<leader>szf', mini_pick.builtin.files, { desc = '[S]earch [F]iles' })
+    -- Search built-in pickers
+    vim.keymap.set('n', '<leader>szx', function()
+      -- Create array of built-in pickers which combines pickers from mini.pick and mini.extra.
+      local pickers = {}
+      local picker_names = {}
+      for key, picker in pairs(mini_pick.builtin) do
+        table.insert(picker_names, key)
+        pickers[key] = picker
+      end
+      for key, picker in pairs(mini_extra.pickers) do
+        table.insert(picker_names, key)
+        pickers[key] = picker
+      end
+
+      local result = mini_pick.start {
+        source = {
+          name = 'Built-In',
+          items = picker_names,
+          -- preview = function(buf_id, item)
+          --   local help_text =
+          --   -- Show the help info for the item.
+          --   vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, { item })
+          -- end,
+        },
+      }
+      if result then
+        pickers[result]()
+      end
+    end, { desc = '[S]earch Built-In Pickers' })
+    -- vim.keymap.set('n', '<leader>szw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+    vim.keymap.set('n', '<leader>szg', mini_pick.builtin.grep_live, { desc = '[S]earch by [G]rep' })
+    vim.keymap.set('n', '<leader>szd', mini_extra.pickers.diagnostic, { desc = '[S]earch [D]iagnostics' })
+    vim.keymap.set('n', '<leader>szr', mini_pick.builtin.resume, { desc = '[S]earch [R]esume' })
+    vim.keymap.set('n', '<leader>szb', mini_pick.builtin.buffers, { desc = '[S]earch [B]uffers' })
+    -- vim.keymap.set('n', '<leader>sza', mini_pick.builtin.files, { desc = '[S]earch [A]ll Files' })
+    -- vim.keymap.set('n', '<leader>szp', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = 'Live Gre[p] (Args)' })
+    vim.keymap.set('n', '<leader>szt', mini_extra.pickers.treesitter, { desc = '[S]earch [T]ree-sitter' })
+    vim.keymap.set('n', '<leader>sz"', mini_extra.pickers.registers, { desc = '[S]earch Registers' })
+    vim.keymap.set('n', '<leader>szm', mini_extra.pickers.marks, { desc = '[S]earch [M]arks' })
+    -- vim.keymap.set('n', '<leader>szl', mini_extra.pickers.lsp, { desc = '[S]earch [L]sp' })
+    vim.keymap.set('n', '<leader>szc', mini_extra.pickers.commands, { desc = '[S]earch [C]ommands' })
 
     -- Fast and flexible start screen
     local starter = require 'mini.starter'
