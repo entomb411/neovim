@@ -5,6 +5,7 @@ Help
 <leader> sh  - Search help
 <leader> sk  - Search keybindings
 :map  - Show currently mapped keys
+:verbose map  - Shows mapped keys and where the mappings were defined.
 :LspInfo  - Show LSP info
 :q  - Close help (with help window focused)
 With the cursor on a tag, use <C-]> to jump to the subject. Jump back with <C-0> or <C-t>.
