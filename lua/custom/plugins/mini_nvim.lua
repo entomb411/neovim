@@ -94,7 +94,6 @@ return {
       local word = vim.fn.expand('<cword>')
       -- Grep the workspace for only that word.
       mini_pick.builtin.grep( { pattern = word })
-      -- TODO: for some reason this doesn't always show every word that it should.
     end, { desc = '[S]earch current [W]ord' })
     vim.keymap.set('n', '<leader>szg', mini_pick.builtin.grep_live, { desc = '[S]earch by [G]rep' })
     vim.keymap.set('n', '<leader>szd', mini_extra.pickers.diagnostic, { desc = '[S]earch [D]iagnostics' })
