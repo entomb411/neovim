@@ -21,6 +21,18 @@ return {
           --     color = { fg = '#ff9e64' },
           --   },
           -- },
+
+          -- Show if we are recording a macro
+          lualine_y = {
+            function()
+              local reg = vim.fn.reg_recording()
+              if reg ~= "" then
+                return "Recording @" .. reg
+              else
+                return ''
+              end
+            end
+          },
         },
       }
     end,
