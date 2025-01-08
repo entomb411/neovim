@@ -188,7 +188,7 @@ return {
     vim.api.nvim_create_autocmd('LspAttach', {
       callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client.name == 'clangd' then
+        if client and client.name == 'clangd' then
           -- Add keymap for ClangdSwitchSourceHeader
           local bufn = args.bufnr or 0
           vim.api.nvim_buf_set_keymap(bufn, 'n', '<space>cr', '<cmd>ClangdSwitchSourceHeader<cr>', { noremap = true, silent = true })

@@ -22,16 +22,22 @@ return {
           --   },
           -- },
 
-          -- Show if we are recording a macro
+          -- Show if we are recording a macro, otherwise show the names of the active LSPs.
           lualine_y = {
             function()
               local reg = vim.fn.reg_recording()
-              if reg ~= "" then
-                return "Recording @" .. reg
+              if reg ~= '' then
+                return 'Recording @' .. reg
               else
-                return ''
+                local lsp_names = {}
+                for _, client in pairs(vim.lsp.get_clients()) do
+                  if client.attached_buffers[vim.api.nvim_get_current_buf()] then
+                    table.insert(lsp_names, client.name)
+                  end
+                end
+                return table.concat(lsp_names, ',')
               end
-            end
+            end,
           },
         },
       }
