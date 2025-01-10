@@ -142,6 +142,7 @@ return {
       -- gopls = {},
       pyright = {},
       clangd = {
+        -- cmd =  { "clangd", "--log=verbose" },
         capabilities = {
           offsetEncoding = { 'utf-16' },
         },
