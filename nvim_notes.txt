@@ -78,8 +78,6 @@ File Navigation
 <leader> si  - Grep (no-ignore, i.e. search all files)
 <leader> we  - Toggle NeoTree workspace explorer (close with <c-w>q if focused)
 <leader> wf  - Browse workspace files using Mini.files
-<leader> sp  - Open telescope live grep with args. This allows you to add arguments to the underlying ripgrep command.
-               For example: "_drm" -g 'CMakeLists.txt'
 ?  - Show keybindings (while in the NeoTree window)
 
 Jumps
@@ -103,7 +101,7 @@ H  - Move to home line (top) of window
 C-o  - move backwards through jump list
 C-i  - move forwards through jump list
 <tab>  - move forwards through jump list
-<leader> sj  - Show jumplist (Telescope)
+<leader> sj  - Show jumplist (Snacks.picker)
 
 Searching
 /  - Search forward
@@ -114,14 +112,14 @@ n  - Repeat search in same direction
 N  - Repeat search in opposite direction
 <space> sg  - Grep in workspace
 <leader> sw  - Grep word under cursor
-<leader> sb  - Search open buffers (Telescope)
-Find in files:
-  1) <leader> sG  - Open live_grep (telescope)
-  2) Start typing
-  3) Realize that you need to scope to directory
-  4) <Ctrl-f>
-  5) Select directory
-  6) Get returned to live_grep, scoped to the directory you selected and with your search args still populated
+<leader> sb  - Search open buffers (Snacks.picker)
+-- Find in files: (need to find an alternative for Snacks.picker
+--   1) <leader> sG  - Open live_grep (telescope)
+--   2) Start typing
+--   3) Realize that you need to scope to directory
+--   4) <Ctrl-f>
+--   5) Select directory
+--   6) Get returned to live_grep, scoped to the directory you selected and with your search args still populated
 Find and Replace One Occurrence at a Time:
   1) Execute a regular search with /
   2) Use the keystroke cgn on the first result to replace it.
@@ -300,40 +298,39 @@ t{char} or T{char}  - Same as f{char} or F{char}, except the cursor is placed on
                For example, yr will start yanking and open flash. Select a label to set the cursor position. Perform a motion, like iw or start flash Treesitter with S.
                The yank will be performed and the cursor will be returned to the original position.
 
-Telescope
-:Telescope notify  - view notification history
-:Noice telescope  - view Noice message history (probably more useful than the above)
-:Telescope resume  - resume the last telescope picker
-:Telescope lsp_document_symbols  - list symbols in the current buffer
+Snacks.picker
  <space>s"   - Search Registers
- <space>sp   - Live Grep (Args)
+ <space>sp   - Search Projects
  <space>si   - Search Grep No-Ignore
  <space>sr   - Search Resume
  <space>s.   - Search Recent Files ("." for repeat)
  <space>sd   - Search Diagnostics
  <space>sj   - Search Jumplist
- <space>st   - Search Tree-sitter
+--  <space>st   - Search Tree-sitter
  <space>s/   - Search / in Open Files
  <space>sf   - Search Files
  <space>sc   - Search Colorschemes
  <space>sk   - Search Keymaps
- <space>su   - Search Autocommands
- <space>sa   - Search All Buffers
+ <space>sa   - Search Autocommands
  <space>sg   - Search by Grep
  <space>sm   - Search Marks
  <space>sw   - Search current Word
  <space>sb   - Search Buffers
  <space>sh   - Search Help
- <space>sn   - Search Neovim files
+ <space>sn   - Search Neovim config
  <space>sx   - Search Built-In Pickers
- <space>sld  - Definitions
- <space>sli  - Implementations
- <space>slr  - References for Word
- <space>sls  - Symbols in Document
- <space>slt  - Type Definitions for Word
- <space>slw  - Workspace Symbols
- <space>/    - Fuzzy search in current buffer
+-- <space>sld  - Definitions
+-- <space>sli  - Implementations
+-- <space>slr  - References for Word
+-- <space>sls  - Symbols in Document
+-- <space>slt  - Type Definitions for Word
+-- <space>slw  - Workspace Symbols
+ <space>sL    - Search in current buffer
 
+mini.pick
+Currently searches are done using:
+<space>ss  - Start of mini.pick pickers shortcuts
+When a picker is open, press Shift+Tab to see the list of available keybindings.
 
 INSERT MODE
 CTRL-R {register}  - Paste from register
@@ -347,7 +344,7 @@ Show all keys in global namespace
 Noice
 :messages  - Show history of command line messages.
 :Noice  - Shows a full message history
-:Telescope noice  - Show message history in Telescope
+-- :Telescope noice  - Show message history in Telescope
 :Noice dismiss  - Dismiss all visible messages
 
 Persistence
