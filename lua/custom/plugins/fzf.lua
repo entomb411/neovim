@@ -1,0 +1,57 @@
+return {
+  'ibhagwan/fzf-lua',
+  -- or if using mini.icons/mini.nvim
+  dependencies = { 'echasnovski/mini.nvim', 'folke/which-key.nvim' },
+  config = function()
+    local fzf = require 'fzf-lua'
+    fzf.setup {}
+    local wk = require 'which-key'
+    -- Look at :help fzf-lua-commands
+    wk.add {
+      { '<leader>s', group = '[S]earch' },
+      -- Buffers and Files --
+      { '<leader>sb', "<cmd>FzfLua buffers<cr>", desc = '[B]uffers', },
+      { '<leader>sf', "<cmd>FzfLua files<cr>", desc = '[F]iles', },
+
+      -- Search --
+      { '<leader>ss', '<cmd>FzfLua live_grep<cr>', desc = '[S]earch by live grep', },
+      { '<leader>sw', "<cmd>FzfLua cword<cr>", desc = '[W]ord', },
+      -- Tags --
+      -- Git --
+      { '<leader>sg', group = '[G]it' },
+      { '<leader>sgf', "<cmd>FzfLua git_files<cr>", desc = '[F]iles', },
+      { '<leader>sgs', "<cmd>FzfLua git_status<cr>", desc = '[S]tatus', },
+      { '<leader>sgc', "<cmd>FzfLua git_bcommits<cr>", desc = '[C]ommits', },
+      { '<leader>sgb', "<cmd>FzfLua git_blame<cr>", desc = '[B]lame', },
+      { '<leader>sgr', "<cmd>FzfLua git_branches<cr>", desc = 'B[r]anches', },
+      { '<leader>sgt', "<cmd>FzfLua git_stash<cr>", desc = 'S[t]ash', },
+
+      -- LSP/Diagnostics
+      { '<leader>sl', group = '[L]SP' },
+      { '<leader>slr', "<cmd>FzfLua lsp_references<cr>", desc = '[R]eferences', },
+      { '<leader>sld', "<cmd>FzfLua lsp_definitions<cr>", desc = '[D]efinitions', },
+      { '<leader>slD', "<cmd>FzfLua lsp_declarations<cr>", desc = '[D]eclarations', },
+      { '<leader>slt', "<cmd>FzfLua lsp_typedefs<cr>", desc = '[T]ypedefs', },
+      { '<leader>sli', "<cmd>FzfLua lsp_implementations<cr>", desc = '[I]mplementations', },
+      { '<leader>sls', "<cmd>FzfLua lsp_document_symbols<cr>", desc = 'Document [S]ymbols', },
+      { '<leader>slS', "<cmd>FzfLua lsp_live_workspace_symbols<cr>", desc = 'Workspace [S]ymbols', },
+      { '<leader>slc', "<cmd>FzfLua lsp_code_actions<cr>", desc = '[C]ode Actions', },
+      { '<leader>slf', "<cmd>FzfLua lsp_finder<cr>", desc = '[F]inder', },
+      { '<leader>sla', group = 'Di[a]gnostics' },
+      { '<leader>slad', "<cmd>FzfLua lsp_document_diagnostics<cr>", desc = '[D]ocument', },
+      { '<leader>slaw', "<cmd>FzfLua lsp_workspace_diagnostics<cr>", desc = '[W]orkspace', },
+      -- Misc --
+      { '<leader>sr', "<cmd>FzfLua resume<cr>", desc = '[R]esume', },
+      { '<leader>sx', "<cmd>FzfLua builtin<cr>", desc = 'Builtin Pickers', },
+      { '<leader>sh', "<cmd>FzfLua helptags<cr>", desc = '[H]elp', },
+      { '<leader>sm', "<cmd>FzfLua manpages<cr>", desc = '[M]anpages', },
+      { '<leader>sc', "<cmd>FzfLua colorschemes<cr>", desc = '[C]olourschemes', },
+      { '<leader>so', "<cmd>FzfLua commands<cr>", desc = 'C[o]mmands', },
+      { '<leader>sy', "<cmd>FzfLua command_history<cr>", desc = 'Command Histor[y]', },
+      { '<leader>sm', "<cmd>FzfLua marks<cr>", desc = '[M]arks', },
+      { '<leader>sj', "<cmd>FzfLua jumps<cr>", desc = '[J]umps', },
+      { '<leader>s"', "<cmd>FzfLua registers<cr>", desc = 'Registers', },
+      { '<leader>sk', "<cmd>FzfLua keymaps<cr>", desc = '[K]eymaps', },
+    }
+  end,
+}

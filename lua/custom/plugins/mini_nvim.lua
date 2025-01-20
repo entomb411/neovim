@@ -56,90 +56,94 @@ return {
     -- require('mini.move').setup()
 
     -- Use mini picker (alternative to Telescope)
-    local mini_pick = require 'mini.pick'
-    mini_pick.setup()
-    local mini_extra = require 'mini.extra'
-    mini_extra.setup()
-    vim.keymap.set('n', '<leader>ssh', mini_pick.builtin.help, { desc = '[S]earch [H]elp' })
-    vim.keymap.set('n', '<leader>ssk', mini_extra.pickers.keymaps, { desc = '[S]earch [K]eymaps' })
-    vim.keymap.set('n', '<leader>ssf', mini_pick.builtin.files, { desc = '[S]earch [F]iles' })
-    -- Search built-in pickers
-    vim.keymap.set('n', '<leader>ssx', function()
-      -- Create array of built-in pickers which combines pickers from mini.pick and mini.extra.
-      local pickers = {}
-      local picker_names = {}
-      for key, picker in pairs(mini_pick.builtin) do
-        table.insert(picker_names, key)
-        pickers[key] = picker
-      end
-      for key, picker in pairs(mini_extra.pickers) do
-        table.insert(picker_names, key)
-        pickers[key] = picker
-      end
+    local use_mini_pick = true
+    if use_mini_pick then
+      local mini_pick = require 'mini.pick'
+      mini_pick.setup()
+      local mini_extra = require 'mini.extra'
+      mini_extra.setup()
+      vim.keymap.set('n', '<leader>mh', mini_pick.builtin.help, { desc = '[S]earch [H]elp' })
+      vim.keymap.set('n', '<leader>mk', mini_extra.pickers.keymaps, { desc = '[S]earch [K]eymaps' })
+      vim.keymap.set('n', '<leader>mf', mini_pick.builtin.files, { desc = '[S]earch [F]iles' })
+      -- Search built-in pickers
+      vim.keymap.set('n', '<leader>mx', function()
+        -- Create array of built-in pickers which combines pickers from mini.pick and mini.extra.
+        local pickers = {}
+        local picker_names = {}
+        for key, picker in pairs(mini_pick.builtin) do
+          table.insert(picker_names, key)
+          pickers[key] = picker
+        end
+        for key, picker in pairs(mini_extra.pickers) do
+          table.insert(picker_names, key)
+          pickers[key] = picker
+        end
 
-      local result = mini_pick.start {
-        source = {
-          name = 'Built-In',
-          items = picker_names,
-          -- preview = function(buf_id, item)
-          --   local help_text =
-          --   -- Show the help info for the item.
-          --   vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, { item })
-          -- end,
-        },
+        local result = mini_pick.start {
+          source = {
+            name = 'Built-In',
+            items = picker_names,
+            -- preview = function(buf_id, item)
+            --   local help_text =
+            --   -- Show the help info for the item.
+            --   vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, { item })
+            -- end,
+          },
+        }
+        if result then
+          pickers[result]()
+        end
+      end, { desc = '[S]earch Built-In Pickers' })
+      vim.keymap.set('n', '<leader>mw', function()
+        -- Get the current word under the cursor.
+        local word = vim.fn.expand '<cword>'
+        -- Grep the workspace for only that word.
+        mini_pick.builtin.grep { pattern = word }
+      end, { desc = '[S]earch current [W]ord' })
+      vim.keymap.set('n', '<leader>mg', mini_pick.builtin.grep_live, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>md', mini_extra.pickers.diagnostic, { desc = '[S]earch [D]iagnostics' })
+      vim.keymap.set('n', '<leader>mr', mini_pick.builtin.resume, { desc = '[S]earch [R]esume' })
+      vim.keymap.set('n', '<leader>mb', mini_pick.builtin.buffers, { desc = '[S]earch [B]uffers' })
+      -- vim.keymap.set('n', '<leader>ma', mini_pick.builtin.files, { desc = '[S]earch [A]ll Files' })
+      -- vim.keymap.set('n', '<leader>mp', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = 'Live Gre[p] (Args)' })
+      vim.keymap.set('n', '<leader>mt', mini_extra.pickers.treesitter, { desc = '[S]earch [T]ree-sitter' })
+      vim.keymap.set('n', '<leader>m"', mini_extra.pickers.registers, { desc = '[S]earch Registers' })
+      vim.keymap.set('n', '<leader>mm', mini_extra.pickers.marks, { desc = '[S]earch [M]arks' })
+      local wk = require 'which-key'
+      wk.add {
+        { '<leader>m', group = '[M]ini.Pick' },
+        { '<leader>ml', group = '[L]SP' },
       }
-      if result then
-        pickers[result]()
-      end
-    end, { desc = '[S]earch Built-In Pickers' })
-    vim.keymap.set('n', '<leader>ssw', function()
-      -- Get the current word under the cursor.
-      local word = vim.fn.expand '<cword>'
-      -- Grep the workspace for only that word.
-      mini_pick.builtin.grep { pattern = word }
-    end, { desc = '[S]earch current [W]ord' })
-    vim.keymap.set('n', '<leader>ssg', mini_pick.builtin.grep_live, { desc = '[S]earch by [G]rep' })
-    vim.keymap.set('n', '<leader>ssd', mini_extra.pickers.diagnostic, { desc = '[S]earch [D]iagnostics' })
-    vim.keymap.set('n', '<leader>ssr', mini_pick.builtin.resume, { desc = '[S]earch [R]esume' })
-    vim.keymap.set('n', '<leader>ssb', mini_pick.builtin.buffers, { desc = '[S]earch [B]uffers' })
-    -- vim.keymap.set('n', '<leader>ssa', mini_pick.builtin.files, { desc = '[S]earch [A]ll Files' })
-    -- vim.keymap.set('n', '<leader>ssp', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = 'Live Gre[p] (Args)' })
-    vim.keymap.set('n', '<leader>sst', mini_extra.pickers.treesitter, { desc = '[S]earch [T]ree-sitter' })
-    vim.keymap.set('n', '<leader>ss"', mini_extra.pickers.registers, { desc = '[S]earch Registers' })
-    vim.keymap.set('n', '<leader>ssm', mini_extra.pickers.marks, { desc = '[S]earch [M]arks' })
-    local wk = require 'which-key'
-    wk.add {
-      { '<leader>ssl', group = '[L]SP' },
-    }
-    vim.keymap.set('n', '<leader>ssle', function()
-      mini_extra.pickers.lsp { scope = 'declaration' }
-    end, { desc = 'Declaration' })
-    vim.keymap.set('n', '<leader>ssld', function()
-      mini_extra.pickers.lsp { scope = 'definition' }
-    end, { desc = 'Definition' })
-    vim.keymap.set('n', '<leader>ssls', function()
-      mini_extra.pickers.lsp { scope = 'document_symbol' }
-    end, { desc = 'Symbols' })
-    vim.keymap.set('n', '<leader>ssli', function()
-      mini_extra.pickers.lsp { scope = 'implementation' }
-    end, { desc = 'Implementation' })
-    vim.keymap.set('n', '<leader>sslr', function()
-      mini_extra.pickers.lsp { scope = 'references' }
-    end, { desc = 'References' })
-    vim.keymap.set('n', '<leader>sslt', function()
-      mini_extra.pickers.lsp { scope = 'type_definition' }
-    end, { desc = 'Type Definition' })
-    vim.keymap.set('n', '<leader>sslw', function()
-      mini_extra.pickers.lsp { scope = 'workspace_symbol' }
-    end, { desc = 'Workspace Symbols' })
+      vim.keymap.set('n', '<leader>mle', function()
+        mini_extra.pickers.lsp { scope = 'declaration' }
+      end, { desc = 'Declaration' })
+      vim.keymap.set('n', '<leader>mld', function()
+        mini_extra.pickers.lsp { scope = 'definition' }
+      end, { desc = 'Definition' })
+      vim.keymap.set('n', '<leader>mls', function()
+        mini_extra.pickers.lsp { scope = 'document_symbol' }
+      end, { desc = 'Symbols' })
+      vim.keymap.set('n', '<leader>mli', function()
+        mini_extra.pickers.lsp { scope = 'implementation' }
+      end, { desc = 'Implementation' })
+      vim.keymap.set('n', '<leader>mlr', function()
+        mini_extra.pickers.lsp { scope = 'references' }
+      end, { desc = 'References' })
+      vim.keymap.set('n', '<leader>mlt', function()
+        mini_extra.pickers.lsp { scope = 'type_definition' }
+      end, { desc = 'Type Definition' })
+      vim.keymap.set('n', '<leader>mlw', function()
+        mini_extra.pickers.lsp { scope = 'workspace_symbol' }
+      end, { desc = 'Workspace Symbols' })
 
-    vim.keymap.set('n', '<leader>ssc', mini_extra.pickers.commands, { desc = '[S]earch [C]ommands' })
+      vim.keymap.set('n', '<leader>mc', mini_extra.pickers.commands, { desc = '[S]earch [C]ommands' })
+    end
 
     -- Fast and flexible start screen
     local starter = require 'mini.starter'
     starter.setup {
       items = {
-        starter.sections.pick(),
+        use_mini_pick and starter.sections.pick() or nil,
         starter.sections.sessions(5, true),
         starter.sections.builtin_actions(),
       },
