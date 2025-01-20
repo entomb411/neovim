@@ -17,13 +17,15 @@ return {
 
       -- Search --
       { '<leader>ss', '<cmd>FzfLua live_grep<cr>', desc = '[S]earch by live grep', },
-      { '<leader>sw', "<cmd>FzfLua cword<cr>", desc = '[W]ord', },
+      { '<leader>sw', "<cmd>FzfLua grep_cword<cr>", desc = '[W]ord', },
+      { '<leader>s<space>', "<cmd>FzfLua live_grep_glob<cr>", desc = 'Live grep glob', },
       -- Tags --
       -- Git --
       { '<leader>sg', group = '[G]it' },
       { '<leader>sgf', "<cmd>FzfLua git_files<cr>", desc = '[F]iles', },
       { '<leader>sgs', "<cmd>FzfLua git_status<cr>", desc = '[S]tatus', },
       { '<leader>sgc', "<cmd>FzfLua git_bcommits<cr>", desc = '[C]ommits', },
+      { '<leader>sgl', "<cmd>FzfLua git_commits<cr>", desc = '[L]og', },
       { '<leader>sgb', "<cmd>FzfLua git_blame<cr>", desc = '[B]lame', },
       { '<leader>sgr', "<cmd>FzfLua git_branches<cr>", desc = 'B[r]anches', },
       { '<leader>sgt', "<cmd>FzfLua git_stash<cr>", desc = 'S[t]ash', },
