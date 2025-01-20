@@ -12,6 +12,8 @@ return {
       -- Buffers and Files --
       { '<leader>sb', "<cmd>FzfLua buffers<cr>", desc = '[B]uffers', },
       { '<leader>sf', "<cmd>FzfLua files<cr>", desc = '[F]iles', },
+      { '<leader>si', "<cmd>FzfLua lines<cr>", desc = 'Open Buffers L[i]nes', },
+      { '<leader>st', "<cmd>FzfLua treesitter<cr>", desc = '[T]reesitter', },
 
       -- Search --
       { '<leader>ss', '<cmd>FzfLua live_grep<cr>', desc = '[S]earch by live grep', },
