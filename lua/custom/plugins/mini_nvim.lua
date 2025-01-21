@@ -65,6 +65,7 @@ return {
       vim.keymap.set('n', '<leader>mh', mini_pick.builtin.help, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>mk', mini_extra.pickers.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>mf', mini_pick.builtin.files, { desc = '[S]earch [F]iles' })
+
       -- Search built-in pickers
       vim.keymap.set('n', '<leader>mx', function()
         -- Create array of built-in pickers which combines pickers from mini.pick and mini.extra.
@@ -171,6 +172,67 @@ return {
         minifiles.open(curr_buf, false)
       end
     end, { desc = 'Browse [W]orkspace [C]urrent File' })
+
+    -- Add keymaps to open highlighted file in a split.
+    local map_split = function(buf_id, lhs, direction)
+      local rhs = function()
+        -- Make new window and set it as target
+        local cur_target = _G.MiniFiles.get_explorer_state().target_window
+        local new_target = vim.api.nvim_win_call(cur_target, function()
+          vim.cmd(direction .. ' split')
+          return vim.api.nvim_get_current_win()
+        end)
+
+        _G.MiniFiles.set_target_window(new_target)
+
+        -- This intentionally doesn't act on file under cursor in favor of
+        -- explicit "go in" action (`l` / `L`). To immediately open file,
+        -- add appropriate `MiniFiles.go_in()` call instead of this comment.
+      end
+
+      -- Adding `desc` will result into `show_help` entries
+      local desc = 'Split ' .. direction
+      vim.keymap.set('n', lhs, rhs, { buffer = buf_id, desc = desc })
+    end
+
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'MiniFilesBufferCreate',
+      callback = function(args)
+        local buf_id = args.data.buf_id
+        -- Tweak keys to your liking
+        map_split(buf_id, '<C-s>', 'belowright horizontal')
+        map_split(buf_id, '<C-v>', 'belowright vertical')
+      end,
+    })
+
+    -- Attempting to debug why the help window is too narrow.
+    -- I don't seem to get a MiniFilesWindowOpen event when the help window is opened.
+    local debug_mini_files = false
+    if debug_mini_files then
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'MiniFilesWindowOpen',
+        callback = function(args)
+          -- Get window config
+          local win_id = args.data.win_id
+          local win_config = vim.api.nvim_win_get_config(win_id)
+          vim.print('WindowOpen: ' .. vim.inspect(win_config))
+
+          -- Calculate the width of the longest line in the buffer.
+          local buf_id = args.data.buf_id
+          local lines = vim.api.nvim_buf_get_lines(buf_id, 0, -1, false)
+          local current_width = vim.api.nvim_win_get_width(0)
+          local max_width = current_width
+          for _, line in ipairs(lines) do
+            max_width = math.max(max_width, vim.fn.strdisplaywidth(line))
+            vim.print('line: ' .. line)
+            vim.print('width: ' .. vim.fn.strdisplaywidth(line))
+          end
+          vim.print('window-width: ' .. current_width)
+          vim.print('max-width: ' .. max_width)
+        end,
+      })
+    end
+
     -- ... and there is more!
     --  Check out: https://github.com/echasnovski/mini.nvim
   end,

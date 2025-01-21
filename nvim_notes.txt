@@ -350,6 +350,10 @@ Noice
 Persistence
 <leader>pr  - Restore last session
 
+fzf-lua
+<F1>  - Toggle help
+<F2>  - Toggle fullscreen
+
 Kitty scrollback (https://github.com/mikesmithgh/kitty-scrollback.nvim)
 In Kitty,
 <C-S-h>  - Open scrollback in nvim
