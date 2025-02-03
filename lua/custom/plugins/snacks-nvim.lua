@@ -1,4 +1,4 @@
-local enable_keybindings = false -- Set this flag to true or false to enable/disable keybindings
+local enable_keybindings = true -- Set this flag to true or false to enable/disable keybindings
 
 return {
   'folke/snacks.nvim',
@@ -21,267 +21,281 @@ return {
     words = { enabled = false },
     picker = {},
   },
+  dependencies = {
+    'folke/which-key.nvim',
+  },
+  config = function(_, opts) -- The first parameter is a LazyPlugin, which we don't know or care what it is.
+    -- Default implementation of config() automatically runs require(MAIN).setup(opts).
+    -- This means that if you want to extend config(), you should call this same function, and add whatever logic you want afterwards.
+    require('snacks').setup(opts)
+
+    local which_key = require 'which-key'
+    which_key.add {
+      { '<leader>p', group = 'Snacks [P]icker' },
+      { '<leader>pl', group = 'LSP' },
+    }
+  end,
   keys = enable_keybindings
       and {
         -- Picker keybindings
         {
-          '<leader>sx',
+          '<leader>px',
           function()
             Snacks.picker.pickers()
           end,
-          desc = '[S]earch Built-In Pickers',
+          desc = 'Search Built-In Pickers',
         },
         -- find
         {
-          '<leader>sb',
+          '<leader>pb',
           function()
             Snacks.picker.buffers()
           end,
-          desc = '[S]earch [B]uffers',
+          desc = 'Search Buffers',
         },
         {
-          '<leader>sn',
+          '<leader>pn',
           function()
             Snacks.picker.files { cwd = vim.fn.stdpath 'config' }
           end,
-          desc = '[S]earch [N]eovim Config',
+          desc = 'Search Neovim Config',
         },
         {
-          '<leader>sf',
+          '<leader>pf',
           function()
             Snacks.picker.files()
           end,
-          desc = '[S]earch [F]iles',
+          desc = 'Search Files',
         },
         {
-          '<leader>s.',
+          '<leader>p.',
           function()
             Snacks.picker.recent()
           end,
-          desc = '[S]earch Recent Files',
+          desc = 'Search Recent Files',
         },
         -- git
         {
-          '<leader>sGl',
+          '<leader>pGl',
           function()
             Snacks.picker.git_log()
           end,
-          desc = '[S]earch [G]it [L]og',
+          desc = 'Search Git Log',
         },
         {
-          '<leader>sGf',
+          '<leader>pGf',
           function()
             Snacks.picker.git_files()
           end,
-          desc = '[S]earch [G]it [F]iles',
+          desc = 'Search Git Files',
         },
         {
-          '<leader>sGs',
+          '<leader>pGs',
           function()
             Snacks.picker.git_status()
           end,
-          desc = '[S]earch [G]it [S]tatus',
+          desc = 'Search Git Status',
         },
-        -- vim.keymap.set('n', '<leader>cgc', builtin.git_commits, { desc = 'Search [G]it [C]ommits' })
-        -- vim.keymap.set('n', '<leader>cgb', builtin.git_branches, { desc = 'Search [G]it [B]ranches' })
-        -- vim.keymap.set('n', '<leader>cgf', builtin.git_bcommits, { desc = 'Search [G]it Bu[f]fer Commits' })
+        -- vim.keymap.set('n', '<leader>cgc', builtin.git_commits, { desc = 'Search Git Commits' })
+        -- vim.keymap.set('n', '<leader>cgb', builtin.git_branches, { desc = 'Search Git Branches' })
+        -- vim.keymap.set('n', '<leader>cgf', builtin.git_bcommits, { desc = 'Search Git Buffer Commits' })
         -- Grep
         {
-          '<leader>sL',
+          '<leader>pL',
           function()
             Snacks.picker.lines()
           end,
-          desc = '[S]earch Buffer [L]ines',
+          desc = 'Search Buffer Lines',
         },
         {
-          '<leader>sB',
+          '<leader>pB',
           function()
             Snacks.picker.grep_buffers()
           end,
-          desc = '[S]earch Open [B]uffers',
+          desc = 'Search Open Buffers',
         },
         {
-          '<leader>sg',
+          '<leader>pg',
           function()
             Snacks.picker.grep()
           end,
-          desc = '[S]earch by [G]rep',
+          desc = 'Search by Grep',
         },
         {
-          '<leader>si',
+          '<leader>pi',
           function()
             Snacks.picker.grep { ignored = true, format = 'file', finder = 'grep', live = true, supports_live = true }
           end,
-          desc = '[S]earch by Grep No-[I]gnore',
+          desc = 'Search by Grep No-Ignore',
         },
         {
-          '<leader>s/',
+          '<leader>p/',
           function()
             Snacks.picker.grep { ignored = false, buffers = true, format = 'file', finder = 'grep', live = true, supports_live = true }
           end,
-          desc = '[S]earch [/] by Grep in Open Files',
+          desc = 'Search / by Grep in Open Files',
         },
         {
-          '<leader>sw',
+          '<leader>pw',
           function()
             Snacks.picker.grep_word()
           end,
-          desc = '[S]earch [W]ord',
+          desc = 'Search Word',
           mode = { 'n', 'x' },
         },
         -- search
         {
-          '<leader>s"',
+          '<leader>p"',
           function()
             Snacks.picker.registers()
           end,
-          desc = '[S]earch [R]egisters',
+          desc = 'Search Registers',
         },
         {
-          '<leader>sa',
+          '<leader>pa',
           function()
             Snacks.picker.autocmds()
           end,
-          desc = '[S]earch [A]utocmds',
+          desc = 'Search Autocmds',
         },
         {
-          '<leader>sH',
+          '<leader>pH',
           function()
             Snacks.picker.command_history()
           end,
-          desc = '[S]earch Command [H]istory',
+          desc = 'Search Command History',
         },
         {
-          '<leader>sC',
+          '<leader>pC',
           function()
             Snacks.picker.commands()
           end,
-          desc = '[S]earch [C]ommands',
+          desc = 'Search Commands',
         },
         {
-          '<leader>sd',
+          '<leader>pd',
           function()
             Snacks.picker.diagnostics()
           end,
-          desc = '[S]earch [D]iagnostics',
+          desc = 'Search Diagnostics',
         },
         {
-          '<leader>sh',
+          '<leader>ph',
           function()
             Snacks.picker.help()
           end,
-          desc = '[S]earch [H]elp',
+          desc = 'Search Help',
         },
         {
-          '<leader>sH',
+          '<leader>pH',
           function()
             Snacks.picker.highlights()
           end,
-          desc = '[S]earch [H]ighlights',
+          desc = 'Search Highlights',
         },
         {
-          '<leader>sj',
+          '<leader>pj',
           function()
             Snacks.picker.jumps()
           end,
-          desc = '[S]earch [J]umplist',
+          desc = 'Search Jumplist',
         },
         {
-          '<leader>sk',
+          '<leader>pk',
           function()
             Snacks.picker.keymaps()
           end,
-          desc = '[S]earch [K]eymaps',
+          desc = 'Search Keymaps',
         },
-        -- { '<leader>st', function() end, { desc = '[S]earch [T]ree-sitter' })
+        -- { '<leader>pt', function() end, { desc = 'Search Tree-sitter' })
         {
-          '<leader>sl',
+          '<leader>po',
           function()
             Snacks.picker.loclist()
           end,
           desc = 'Location List',
         },
         {
-          '<leader>sM',
+          '<leader>pM',
           function()
             Snacks.picker.man()
           end,
-          desc = '[S]earch [M]an Pages',
+          desc = 'Search Man Pages',
         },
         {
-          '<leader>sm',
+          '<leader>pm',
           function()
             Snacks.picker.marks()
           end,
-          desc = '[S]earch [M]arks',
+          desc = 'Search Marks',
         },
         {
-          '<leader>sr',
+          '<leader>pr',
           function()
             Snacks.picker.resume()
           end,
-          desc = '[S]earch [R]esume',
+          desc = 'Search Resume',
         },
         {
-          '<leader>sq',
+          '<leader>pq',
           function()
             Snacks.picker.qflist()
           end,
-          desc = '[S]earch [Q]uickfix List',
+          desc = 'Search Quickfix List',
         },
         {
-          '<leader>sc',
+          '<leader>pc',
           function()
             Snacks.picker.colorschemes()
           end,
-          desc = '[S]earch [C]olorschemes',
+          desc = 'Search Colorschemes',
         },
         {
-          '<leader>sp',
+          '<leader>pp',
           function()
             Snacks.picker.projects()
           end,
-          desc = '[S]earch [P]rojects',
+          desc = 'Search Projects',
         },
         -- LSP
         {
-          'gd',
+          '<leader>pd',
           function()
             Snacks.picker.lsp_definitions()
           end,
-          desc = '[G]oto [D]efinition',
+          desc = 'Goto Definition',
         },
         {
-          'gr',
+          '<leader>pr',
           function()
             Snacks.picker.lsp_references()
           end,
           nowait = true,
-          desc = '[G]oto [R]eferences',
+          desc = 'Goto References',
         },
         {
-          'gI',
+          '<leader>pI',
           function()
             Snacks.picker.lsp_implementations()
           end,
-          desc = '[G]oto [I]mplementation',
+          desc = 'Goto Implementation',
         },
         {
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
-          '<leader>D',
+          '<leader>pD',
           function()
             Snacks.picker.lsp_type_definitions()
           end,
-          desc = 'Type [D]efinition',
+          desc = 'Type Definition',
         },
         {
-          '<leader>sls',
+          '<leader>pls',
           function()
             Snacks.picker.lsp_symbols()
           end,
-          desc = '[S]earch [L]sp [S]ymbols',
+          desc = 'Search Lsp Symbols',
         },
       }
     or nil,

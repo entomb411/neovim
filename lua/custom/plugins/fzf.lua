@@ -8,7 +8,6 @@ return {
     local wk = require 'which-key'
     -- Look at :help fzf-lua-commands
     wk.add {
-      { '<leader>s', group = '[S]earch' },
       -- Buffers and Files --
       { '<leader>sb', "<cmd>FzfLua buffers<cr>", desc = '[B]uffers', },
       { '<leader>sf', "<cmd>FzfLua files<cr>", desc = '[F]iles', },
