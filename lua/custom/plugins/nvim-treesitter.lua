@@ -35,6 +35,8 @@ return {
       highlight = { enable = true },
       indent = { enable = true },
     },
+    lazy = true,
+    event = 'VeryLazy',
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 
@@ -57,6 +59,8 @@ return {
     'nvim-treesitter/nvim-treesitter-context',
     -- event = 'LazyFile',
     enabled = true,
+    lazy = true,
+    event = 'VeryLazy',
     opts = { mode = 'cursor', max_lines = 3 },
     keys = {
       {

@@ -2,6 +2,8 @@ return {
   'ibhagwan/fzf-lua',
   -- or if using mini.icons/mini.nvim
   dependencies = { 'echasnovski/mini.nvim', 'folke/which-key.nvim' },
+  lazy = true,
+  event = 'VeryLazy',
   config = function()
     local fzf = require 'fzf-lua'
     fzf.setup {}

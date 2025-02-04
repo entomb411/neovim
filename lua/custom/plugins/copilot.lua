@@ -5,6 +5,7 @@ return {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
     build = ':Copilot auth',
+    lazy = true,
     opts = {
       suggestion = { enabled = false },
       panel = { enabled = false },

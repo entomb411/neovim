@@ -1,8 +1,10 @@
 return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
-  dependencies = { { 'giuxtaposition/blink-cmp-copilot' }, { 'rafamadriz/friendly-snippets' } },
+  dependencies = { { 'giuxtaposition/blink-cmp-copilot', lazy = true }, { 'rafamadriz/friendly-snippets', lazy = true } },
 
+  lazy = true,
+  event = 'VeryLazy',
   -- use a release tag to download pre-built binaries
   version = '*',
   -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
@@ -53,9 +55,9 @@ return {
     -- ['<A-3>'] = { function(cmp) cmp.accept { index = 3 } end, },
     -- ['<A-4>'] = { function(cmp) cmp.accept { index = 4 } end, },
     -- ['<A-5>'] = { function(cmp) cmp.accept { index = 5 } end, },
-    ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-    ["<C-up>"] = { "scroll_documentation_up", "fallback" },
-    ["<C-down>"] = { "scroll_documentation_down", "fallback" },
+    ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+    ['<C-up>'] = { 'scroll_documentation_up', 'fallback' },
+    ['<C-down>'] = { 'scroll_documentation_down', 'fallback' },
   },
   completion = {
     documentation = {
@@ -70,7 +72,6 @@ return {
             text = function(ctx)
               local ret_text = ctx.idx >= 6 and ' ' or tostring(ctx.idx)
               -- Print ret_text for debugging
-              require("noice").log("thingie")
               -- require("noice").log("ret_text", ret_text)
               return ret_text
             end,
