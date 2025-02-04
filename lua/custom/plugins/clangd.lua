@@ -5,6 +5,8 @@ return {
   -- Add C/C++ to treesitter
   {
     'nvim-treesitter/nvim-treesitter',
+    lazy = true,
+    event = 'VeryLazy',
     opts = function(_, opts)
       if type(opts.ensure_installed) == 'table' then
         vim.list_extend(opts.ensure_installed, { 'c', 'cpp' })

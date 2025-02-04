@@ -22,6 +22,8 @@
 return {
   'chentoast/marks.nvim',
   enabled = true,
+  lazy = true,
+  event = 'VeryLazy',
   dependencies = {
     'folke/which-key.nvim',
   },
