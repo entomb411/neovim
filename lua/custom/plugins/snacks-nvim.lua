@@ -282,14 +282,21 @@ return {
         },
         -- LSP
         {
-          '<leader>pd',
+          '<leader>pld',
           function()
             Snacks.picker.lsp_definitions()
           end,
           desc = 'Goto Definition',
         },
         {
-          '<leader>pr',
+          '<leader>plD',
+          function()
+            Snacks.picker.lsp_declarations()
+          end,
+          desc = 'Goto Declaration',
+        },
+        {
+          '<leader>plr',
           function()
             Snacks.picker.lsp_references()
           end,
@@ -297,7 +304,7 @@ return {
           desc = 'Goto References',
         },
         {
-          '<leader>pI',
+          '<leader>pli',
           function()
             Snacks.picker.lsp_implementations()
           end,
@@ -307,18 +314,25 @@ return {
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
-          '<leader>pD',
+          '<leader>plt',
           function()
             Snacks.picker.lsp_type_definitions()
           end,
-          desc = 'Type Definition',
+          desc = 'Goto Type Definition',
         },
         {
           '<leader>pls',
           function()
             Snacks.picker.lsp_symbols()
           end,
-          desc = 'Search Lsp Symbols',
+          desc = 'Search Symbols',
+        },
+        {
+          '<leader>plw',
+          function()
+            Snacks.picker.lsp_workspace_symbols()
+          end,
+          desc = 'Search Workspace Symbols',
         },
       }
     or nil,
