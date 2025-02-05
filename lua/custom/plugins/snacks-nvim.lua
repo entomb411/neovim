@@ -33,6 +33,8 @@ return {
     which_key.add {
       { '<leader>p', group = 'Snacks [P]icker' },
       { '<leader>pl', group = 'LSP' },
+      { '<leader>pG', group = 'Git' },
+      { '<leader>pGl', group = 'Log' },
     }
   end,
   keys = enable_keybindings
@@ -76,11 +78,25 @@ return {
         },
         -- git
         {
-          '<leader>pGl',
+          '<leader>pGlr',
           function()
             Snacks.picker.git_log()
           end,
-          desc = 'Search Git Log',
+          desc = 'Search Git Log Repo',
+        },
+        {
+          '<leader>pGlf',
+          function()
+            Snacks.picker.git_log_file()
+          end,
+          desc = 'Search Git Log File',
+        },
+        {
+          '<leader>pGll',
+          function()
+            Snacks.picker.git_log_line()
+          end,
+          desc = 'Search Git Log Line',
         },
         {
           '<leader>pGf',
@@ -95,6 +111,13 @@ return {
             Snacks.picker.git_status()
           end,
           desc = 'Search Git Status',
+        },
+        {
+          '<leader>pGd',
+          function()
+            Snacks.picker.git_diff()
+          end,
+          desc = 'Search Git Diff',
         },
         -- vim.keymap.set('n', '<leader>cgc', builtin.git_commits, { desc = 'Search Git Commits' })
         -- vim.keymap.set('n', '<leader>cgb', builtin.git_branches, { desc = 'Search Git Branches' })

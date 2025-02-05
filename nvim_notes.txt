@@ -76,7 +76,6 @@ File Navigation
 <leader> sa  - Find all files (no-ignore)
 <leader> sg  - Grep (root dir).
 <leader> si  - Grep (no-ignore, i.e. search all files)
-<leader> we  - Toggle NeoTree workspace explorer (close with <c-w>q if focused)
 <leader> wf  - Browse workspace files using Mini.files
 ?  - Show keybindings (while in the NeoTree window)
 
