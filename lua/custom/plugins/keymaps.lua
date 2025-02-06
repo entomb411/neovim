@@ -1,13 +1,36 @@
--- For example, in the following configuration, we use:
---  event = 'VimEnter'
---
--- which loads which-key before all the UI elements are loaded. Events can be
--- normal autocommands events (`:help autocmd-events`).
---
--- Then, because we use the `config` key, the configuration only runs
--- after the plugin has been loaded:
---  config = function() ... end
 return {
+  {
+    -- Find keymaps for a given prefix.
+    -- :KeyAnalyzer <prefix> [mode]
+    -- For example,
+    --   `:KeyAnalyzer <C-M>x i`  - Show mappings starting with CTRL + M x in insert mode
+    'meznaric/key-analyzer.nvim',
+    lazy = true,
+    event = 'VeryLazy',
+    opts = {},
+  },
+  {
+    -- hawtkeys.nvim is a nvim plugin for finding and suggesting memorable and easy-to-press keys for your nvim shortcuts.
+    -- It takes into consideration keyboard layout, easy-to-press combinations and memorable phrases,
+    -- and excludes already mapped combinations to provide you with suggested keys for your commands
+    --
+    -- Searching New Keymaps
+    -- :Hawtkeys
+    --
+    -- Show All Existing Keymaps
+    -- :HawtkeysAll
+    --
+    -- Showing Duplicate Keymaps
+    -- :HawtkeysDupes
+    'tris203/hawtkeys.nvim',
+    lazy = true,
+    event = 'VeryLazy',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    config = {},
+  },
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'

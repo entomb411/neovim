@@ -150,6 +150,7 @@ u  - undo
 C-r  - redo
 C-v - visual block mode
 C-v [select column] S-i [insert text] ESC - insert text in column
+C-v [select column] c [insert text] ESC - Visual-block change. The selected text is deleted and insert mode started. After ESC, the same string is inserted in all lines. Use this for column delete.
 S-v - visual line mode
 dt{char}  - delete up to {char}
 df{char}  - delete up to and including {char}
@@ -239,6 +240,13 @@ C-w >  - Increase window width
 C-w -  - Decrease window height
 C-w +  - Increase window height
 C-w t  - Set window width to 1/3 of the screen
+C-w H  - Move the current window to be at the far left.
+C-w L  - Move the current window to be at the far right.
+C-w J  - Move the current window to be at the very bottom.
+C-w K  - Move the current window to be at the very top.
+C-w T  - Move the current window to a new tab.
+C-w r  - Rotate windows downwards/rightwards.
+C-w R  - Rotate windows upwards/leftwards.
 
 Folding
 za  - toggle fold
@@ -286,6 +294,15 @@ an   - around next textobject
 in   - inside next textobject
 al   - around last textobject
 il   - inside last textobject
+
+Mini.surround
+<M-s>a  - Add surrounding in Normal and Visual modes
+<M-s>d  - Delete surrounding
+<M-s>f  - Find surrounding (to the right)
+<M-s>F  - Find surrounding (to the left)
+<M-s>h  - Highlight surrounding
+<M-s>r  - Replace surrounding
+<M-s>n  - Update `n_lines`
 
 Flash
 s  - Flash jump.
@@ -370,6 +387,12 @@ The rpc.send lines are what nvim sends to the lsp server, and the rpc.receive li
 
 This can be used to find hotkey collisions.
   :checkhealth which-key
+
+To find available key mappings:
+  :KeyAnalyzer <leader>  - find keymaps beginning with <leader>
+  :KeyAnalyzer s  - find keymaps beginning with s
+  :KeyAnalyzer <C-  - find keymaps beginning with ctrl
+  :KeyAnalyzer <M-  - find keymaps beginning with alt
 
 
 :set ve=all  - Show invisible characters
