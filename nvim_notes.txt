@@ -369,6 +369,8 @@ Persistence
 fzf-lua
 <F1>  - Toggle help
 <F2>  - Toggle fullscreen
+<leader>s<space>  - live_grep_glob. The following is an example you can run inside it:
+foo.*bar -- *.lua !*spec*  - search for a line that has both foo AND bar inside lua files excluding spec files (tests), then ctrl-g to fuzzy for the fine tuning.
 
 Kitty scrollback (https://github.com/mikesmithgh/kitty-scrollback.nvim)
 In Kitty,

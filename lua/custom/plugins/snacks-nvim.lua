@@ -55,9 +55,10 @@ return {
           icon = ' ',
           title = 'Git Status',
           section = 'terminal',
-          enabled = function()
-            return Snacks.git.get_root() ~= nil
-          end,
+          enabled = false,
+          -- enabled = function()
+          --   return Snacks.git.get_root() ~= nil
+          -- end,
           cmd = 'git status --short --branch --renames',
           height = 5,
           padding = 1,
@@ -88,8 +89,8 @@ return {
     which_key.add {
       { '<leader>p', group = 'Snacks [P]icker' },
       { '<leader>pl', group = 'LSP' },
-      { '<leader>pG', group = 'Git' },
-      { '<leader>pGl', group = 'Log' },
+      { '<leader>pg', group = 'Git' },
+      { '<leader>pgl', group = 'Log' },
     }
   end,
   keys = enable_keybindings
@@ -133,42 +134,42 @@ return {
         },
         -- git
         {
-          '<leader>pGlr',
+          '<leader>pglr',
           function()
             Snacks.picker.git_log()
           end,
           desc = 'Search Git Log Repo',
         },
         {
-          '<leader>pGlf',
+          '<leader>pglf',
           function()
             Snacks.picker.git_log_file()
           end,
           desc = 'Search Git Log File',
         },
         {
-          '<leader>pGll',
+          '<leader>pgll',
           function()
             Snacks.picker.git_log_line()
           end,
           desc = 'Search Git Log Line',
         },
         {
-          '<leader>pGf',
+          '<leader>pgf',
           function()
             Snacks.picker.git_files()
           end,
           desc = 'Search Git Files',
         },
         {
-          '<leader>pGs',
+          '<leader>pgs',
           function()
             Snacks.picker.git_status()
           end,
           desc = 'Search Git Status',
         },
         {
-          '<leader>pGd',
+          '<leader>pgd',
           function()
             Snacks.picker.git_diff()
           end,
@@ -193,7 +194,7 @@ return {
           desc = 'Search Open Buffers',
         },
         {
-          '<leader>pg',
+          '<leader>p<space>',
           function()
             Snacks.picker.grep()
           end,
