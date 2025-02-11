@@ -96,7 +96,7 @@ return {
     -- require('mini.move').setup()
 
     -- Use mini picker (alternative to Telescope)
-    local use_mini_pick = true
+    local use_mini_pick = false
     if use_mini_pick then
       local mini_pick = require 'mini.pick'
       mini_pick.setup()
@@ -181,14 +181,17 @@ return {
     end
 
     -- Fast and flexible start screen
-    local starter = require 'mini.starter'
-    starter.setup {
-      items = {
-        use_mini_pick and starter.sections.pick() or nil,
-        starter.sections.sessions(5, true),
-        starter.sections.builtin_actions(),
-      },
-    }
+    local use_mini_starter = false
+    if use_mini_starter then
+      local starter = require 'mini.starter'
+      starter.setup {
+        items = {
+          use_mini_pick and starter.sections.pick() or nil,
+          starter.sections.sessions(5, true),
+          starter.sections.builtin_actions(),
+        },
+      }
+    end
 
     -- Navigate and manipulate file system
     -- Run with ':lua MiniFiles.open()'
