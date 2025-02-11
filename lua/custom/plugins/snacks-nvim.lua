@@ -20,6 +20,30 @@ local get_cmd = function()
   end
 end
 
+local get_dashboard_git_section = function()
+        return {
+          pane = 2,
+          icon = ' ',
+          title = 'Git Status',
+          section = 'terminal',
+          -- enabled = false,
+          enabled = function()
+            -- Check if there is a .git folder in the root of the project.
+            -- TODO: Currently this only checks if it exists in the current directory. Should I check upwards?
+            return vim.fn.isdirectory '.git' == 1
+          end,
+          -- cmd = 'git status --short --branch --renames',
+          cmd = 'krabby random ; sleep .1',
+          random = 10,
+          height = 30,
+
+          -- height = 5,
+          padding = 1,
+          ttl = 5 * 60,
+          indent = 3,
+        }
+end
+
 return {
   'folke/snacks.nvim',
   priority = 1000,
@@ -50,21 +74,27 @@ return {
         { section = 'keys', gap = 1, padding = 1 },
         { pane = 2, icon = ' ', title = 'Recent Files', section = 'recent_files', indent = 2, padding = 1 },
         { pane = 2, icon = ' ', title = 'Projects', section = 'projects', indent = 2, padding = 1 },
-        {
-          pane = 2,
-          icon = ' ',
-          title = 'Git Status',
-          section = 'terminal',
-          enabled = false,
-          -- enabled = function()
-          --   return Snacks.git.get_root() ~= nil
-          -- end,
-          cmd = 'git status --short --branch --renames',
-          height = 5,
-          padding = 1,
-          ttl = 5 * 60,
-          indent = 3,
-        },
+        -- {
+        --   pane = 2,
+        --   icon = ' ',
+        --   title = 'Git Status',
+        --   section = 'terminal',
+        --   -- enabled = false,
+        --   enabled = function()
+        --     -- Check if there is a .git folder in the root of the project.
+        --     -- TODO: Currently this only checks if it exists in the current directory. Should I check upwards?
+        --     return vim.fn.isdirectory '.git' == 1
+        --   end,
+        --   -- cmd = 'git status --short --branch --renames',
+        --   cmd = 'krabby random ; sleep .1',
+        --   random = 10,
+        --   height = 30,
+        --
+        --   -- height = 5,
+        --   padding = 1,
+        --   ttl = 5 * 60,
+        --   indent = 3,
+        -- },
         { section = 'startup' },
       },
     },
