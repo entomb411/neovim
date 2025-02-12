@@ -2,6 +2,8 @@ local enable_keybindings = true -- Set this flag to true or false to enable/disa
 
 local has_colorscript = function()
   -- Check if colorscript is installed.
+  -- https://gitlab.com/dwt1/shell-color-scripts
+  -- 'colorscript -e square'
   return vim.fn.executable 'colorscript' == 1
 end
 
@@ -10,94 +12,60 @@ local has_krabby = function()
   return vim.fn.executable 'krabby' == 1
 end
 
-local get_cmd = function()
-  if has_colorscript() then
-    return 'colorscript -e square'
-  elseif has_krabby() then
-    return 'krabby random'
-  else
-    return ''
-  end
+local has_git = function()
+  return vim.fn.executable 'git' == 1
+end
+
+local is_git_repo = function()
+  local in_work_tree = vim.fn.system('git rev-parse --is-inside-work-tree')
+  return in_work_tree:match('true') ~= nil
 end
 
 local get_dashboard_git_section = function()
-        return {
-          pane = 2,
-          icon = ' ',
-          title = 'Git Status',
-          section = 'terminal',
-          -- enabled = false,
-          enabled = function()
-            -- Check if there is a .git folder in the root of the project.
-            -- TODO: Currently this only checks if it exists in the current directory. Should I check upwards?
-            return vim.fn.isdirectory '.git' == 1
-          end,
-          -- cmd = 'git status --short --branch --renames',
-          cmd = 'krabby random ; sleep .1',
-          random = 10,
-          height = 30,
+  local section = {
+    pane = 2,
+    section = 'terminal',
+    enabled = false,
+    random = 1000,
+    height = 5,
 
-          -- height = 5,
-          padding = 1,
-          ttl = 5 * 60,
-          indent = 3,
-        }
+    padding = 1,
+    ttl = 5 * 60,
+    indent = 3,
+  }
+
+  if has_git() and is_git_repo() then
+    section.icon = ' '
+    section.title = 'Git Status'
+    section.enabled = true
+    section.height = 5
+    section.cmd = 'git status --short --branch --renames'
+  elseif has_krabby() then
+    section.icon = '🦀 '
+    section.title = 'Krabby'
+    section.enabled = true
+    section.height = 30
+    section.cmd = 'krabby random ; sleep .1'
+  end
+  return section
 end
 
-return {
-  'folke/snacks.nvim',
-  priority = 1000,
-  lazy = false,
-  enabled = true,
-  ---@type snacks.Config
-  opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-    bigfile = { enabled = false },
-    dashboard = {
+local dashboard_opts = {
       enabled = true,
       sections = {
         { section = 'header' },
-        {
-          pane = 2,
-          -- pane = 3,
-          section = 'terminal',
-          cmd = get_cmd(),
-          height = 10,
-          indent = 4,
-          random = 10,
-          -- padding = 1,
-          -- enabled = has_colorscript,
-          enabled = false,
-        },
         { section = 'keys', gap = 1, padding = 1 },
         { pane = 2, icon = ' ', title = 'Recent Files', section = 'recent_files', indent = 2, padding = 1 },
         { pane = 2, icon = ' ', title = 'Projects', section = 'projects', indent = 2, padding = 1 },
-        -- {
-        --   pane = 2,
-        --   icon = ' ',
-        --   title = 'Git Status',
-        --   section = 'terminal',
-        --   -- enabled = false,
-        --   enabled = function()
-        --     -- Check if there is a .git folder in the root of the project.
-        --     -- TODO: Currently this only checks if it exists in the current directory. Should I check upwards?
-        --     return vim.fn.isdirectory '.git' == 1
-        --   end,
-        --   -- cmd = 'git status --short --branch --renames',
-        --   cmd = 'krabby random ; sleep .1',
-        --   random = 10,
-        --   height = 30,
-        --
-        --   -- height = 5,
-        --   padding = 1,
-        --   ttl = 5 * 60,
-        --   indent = 3,
-        -- },
-        { section = 'startup' },
       },
-    },
+    }
+
+table.insert(dashboard_opts.sections, get_dashboard_git_section())
+table.insert(dashboard_opts.sections, { section = 'startup' } )
+
+local snacks_opts = {
+    bigfile = { enabled = false },
+    dashboard = dashboard_opts,
     indent = { enabled = false },
     input = { enabled = false },
     notifier = { enabled = false },
@@ -106,13 +74,22 @@ return {
     statuscolumn = { enabled = false },
     words = { enabled = false },
     picker = {},
-  },
+  }
+
+return {
+  'folke/snacks.nvim',
+  priority = 1000,
+  lazy = false,
+  enabled = true,
+  ---@type snacks.Config
+  opts = snacks_opts,
   dependencies = {
     'folke/which-key.nvim',
   },
   config = function(_, opts) -- The first parameter is a LazyPlugin, which we don't know or care what it is.
     -- Default implementation of config() automatically runs require(MAIN).setup(opts).
     -- This means that if you want to extend config(), you should call this same function, and add whatever logic you want afterwards.
+    -- TODO: Add the git/krabby section of the dashboard here.
     require('snacks').setup(opts)
 
     local which_key = require 'which-key'
