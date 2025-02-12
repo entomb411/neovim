@@ -66,6 +66,7 @@ return {
       { '<leader>sj', '<cmd>FzfLua jumps<cr>', desc = '[J]umps' },
       { '<leader>s"', '<cmd>FzfLua registers<cr>', desc = 'Registers' },
       { '<leader>sk', '<cmd>FzfLua keymaps<cr>', desc = '[K]eymaps' },
+      { '<leader>sn', '<cmd>Noice fzf<cr>', desc = '[N]oice' },
     }
   end,
 }

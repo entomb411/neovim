@@ -129,6 +129,7 @@ return {
       end,
       desc = 'Search Neovim Config',
     },
+    { '<leader>pN', function() Snacks.picker.noice() end, desc = 'Search Noice' },
     {
       '<leader>pf',
       function()
