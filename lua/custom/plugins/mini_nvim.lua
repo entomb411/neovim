@@ -77,11 +77,11 @@ return {
     -- Location from location list    [L [l ]l ]L    MiniBracketed.location()
     -- Old files    [O [o ]o ]O    MiniBracketed.oldfile()
     -- Quickfix entry from quickfix list    [Q [q ]q ]Q    MiniBracketed.quickfix()
-    -- Tree-sitter node and parents   [T [t ]t ]T    MiniBracketed.treesitter()
+    -- DISABLED: Tree-sitter node and parents   [T [t ]t ]T    MiniBracketed.treesitter()
     -- Undo states from specially tracked linear history    [U [u ]u ]U    MiniBracketed.undo()
     -- Window in current tab    [W [w ]w ]W    MiniBracketed.window()
     -- Yank selection replacing latest put region   [Y [y ]y ]Y    MiniBracketed.yank()
-    require('mini.bracketed').setup()
+    require('mini.bracketed').setup { treesitter = { suffix = '' } }
 
     -- Minimal and fast tabline showing listed buffers.
     require('mini.tabline').setup()

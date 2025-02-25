@@ -14,7 +14,7 @@ return {
       { '<leader>sb', '<cmd>FzfLua buffers<cr>', desc = '[B]uffers' },
       { '<leader>sf', '<cmd>FzfLua files<cr>', desc = '[F]iles' },
       { '<leader>si', '<cmd>FzfLua lines<cr>', desc = 'Open Buffers L[i]nes' },
-      { '<leader>st', '<cmd>FzfLua treesitter<cr>', desc = '[T]reesitter' },
+      { '<leader>sT', '<cmd>FzfLua treesitter<cr>', desc = '[T]reesitter' },
 
       -- Search --
       { '<leader>ss', '<cmd>FzfLua live_grep<cr>', desc = '[S]earch by live grep' },
@@ -45,7 +45,7 @@ return {
       { '<leader>slr', '<cmd>FzfLua lsp_references<cr>', desc = '[R]eferences' },
       { '<leader>sld', '<cmd>FzfLua lsp_definitions<cr>', desc = '[D]efinitions' },
       { '<leader>slD', '<cmd>FzfLua lsp_declarations<cr>', desc = '[D]eclarations' },
-      { '<leader>slt', '<cmd>FzfLua lsp_typedefs<cr>', desc = '[T]ypedefs' },
+      { '<leader>slt', '<cmd>FzfLua lsp_typedefs<cr>', desc = '[T]ype Definitions' },
       { '<leader>sli', '<cmd>FzfLua lsp_implementations<cr>', desc = '[I]mplementations' },
       { '<leader>sls', '<cmd>FzfLua lsp_document_symbols<cr>', desc = 'Document [S]ymbols' },
       { '<leader>slS', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', desc = 'Workspace [S]ymbols' },
