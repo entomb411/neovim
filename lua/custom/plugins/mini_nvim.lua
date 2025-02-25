@@ -71,7 +71,7 @@ return {
     -- Comment block    [C [c ]c ]C    MiniBracketed.comment()
     -- Conflict marker    [X [x ]x ]X    MiniBracketed.conflict()
     -- Diagnostic   [D [d ]d ]D    MiniBracketed.diagnostic()
-    -- File on disk   [F [f ]f ]F    MiniBracketed.file()
+    -- DISABLED: File on disk   [F [f ]f ]F    MiniBracketed.file()
     -- Indent change    [I [i ]i ]I    MiniBracketed.indent()
     -- Jump from jumplist inside current buffer   [J [j ]j ]J    MiniBracketed.jump()
     -- Location from location list    [L [l ]l ]L    MiniBracketed.location()
@@ -81,7 +81,7 @@ return {
     -- Undo states from specially tracked linear history    [U [u ]u ]U    MiniBracketed.undo()
     -- Window in current tab    [W [w ]w ]W    MiniBracketed.window()
     -- Yank selection replacing latest put region   [Y [y ]y ]Y    MiniBracketed.yank()
-    require('mini.bracketed').setup { treesitter = { suffix = '' } }
+    require('mini.bracketed').setup { treesitter = { suffix = '' }, file = { suffix = '' } }
 
     -- Minimal and fast tabline showing listed buffers.
     require('mini.tabline').setup()
