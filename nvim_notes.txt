@@ -343,11 +343,6 @@ Snacks.picker
 -- <space>slw  - Workspace Symbols
  <space>sL    - Search in current buffer
 
-mini.pick
-Currently searches are done using:
-<space>ss  - Start of mini.pick pickers shortcuts
-When a picker is open, press Shift+Tab to see the list of available keybindings.
-
 INSERT MODE
 CTRL-R {register}  - Paste from register
 

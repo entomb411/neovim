@@ -1,3 +1,7 @@
+    -- +-------------------------------------------------+
+    -- | A | B | C                             X | Y | Z |
+    -- +-------------------------------------------------+
+
 return {
   {
     'nvim-lualine/lualine.nvim',
@@ -38,6 +42,14 @@ return {
                 return table.concat(lsp_names, ',')
               end
             end,
+          },
+          -- Show line:column and the %progress.
+          lualine_z = { 
+           "location",
+            {
+              'progress',
+              -- color = { fg = '#ff9e64' },
+            },
           },
         },
       }
